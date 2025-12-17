@@ -1,9 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './navbar.module.css'
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navbarRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!navbarRef.current) return;
+
+            if (window.scrollY > 100) {
+                navbarRef.current.classList.add(styles.active);
+            } else {
+                navbarRef.current.classList.remove(styles.active);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -68,8 +87,10 @@ const Navbar = () => {
         }
     };
 
+
+
     return (
-        <div className={styles.navbar__container}>
+        <div ref={navbarRef} className={styles.navbar__container}>
             <a className={styles.brand} href="/">
                 EAZ
             </a>

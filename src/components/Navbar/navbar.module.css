@@ -11,6 +11,12 @@
     justify-content: space-between;
     z-index: 999;
     box-sizing: border-box;
+    transition: all .3s ease;
+}
+
+.navbar__container.active {
+    padding: 25px 45px;
+    box-shadow: 3px 0 10px #00000031;
 }
 
 .brand {
@@ -38,7 +44,7 @@
 .nav__menu {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .nav__link {
