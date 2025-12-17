@@ -2,8 +2,11 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  transition: all .3s ease;
 }
 
 body {
+  width: 100%;
+  min-height: 100vh;
   background-color: #ffffff;
 }
