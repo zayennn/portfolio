@@ -74,10 +74,24 @@ const Navbar = () => {
                 EAZ
             </a>
 
+            {/* Desktop Menu */}
+            <nav className={styles.nav__menu}>
+                {navLinks.map((link) => (
+                    <a
+                        key={link.id}
+                        className={styles.nav__link}
+                        href={link.href}
+                    >
+                        {link.text}
+                    </a>
+                ))}
+            </nav>
+
+            {/* Mobile Menu */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.nav
-                        className={styles.nav__menu}
+                        className={`${styles.nav__menu} ${styles.nav__menu__mobile}`}
                         variants={menuVariants}
                         initial="closed"
                         animate="open"

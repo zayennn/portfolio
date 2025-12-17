@@ -144,7 +144,11 @@
         display: none;
     }
 
-    .nav__menu {
+    .nav__menu:not(.nav__menu__mobile) {
+        display: none;
+    }
+
+    .nav__menu__mobile {
         position: fixed;
         top: 0;
         right: 0;
