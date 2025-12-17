@@ -16,5 +16,5 @@ code {
 
 /* Custom Scrollbar Styling */
 ::-webkit-scrollbar {
-  /* display: none; */
+  display: none;
 }

@@ -1,10 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import styles from './navbar.module.css'
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navbarRef = useRef(null);
+    const { scrollYProgress } = useScroll();
+    const scrollX = useSpring(scrollYProgress, {
+        stiffness: 120,
+        damping: 20,
+        mass: 0.2,
+    });
 
     useEffect(() => {
         const handleScroll = () => {
@@ -90,10 +96,16 @@ const Navbar = () => {
 
 
     return (
-        <div ref={navbarRef} className={styles.navbar__container}>
-            <a className={styles.brand} href="/">
-                EAZ
-            </a>
+        <>
+            <motion.div
+                className={styles.scroll__progress}
+                style={{ scaleX: scrollX }}
+            />
+
+            <div ref={navbarRef} className={styles.navbar__container}>
+                <a className={styles.brand} href="/">
+                    EAZ
+                </a>
 
             {/* Desktop Menu */}
             <nav className={styles.nav__menu}>
@@ -144,36 +156,37 @@ const Navbar = () => {
                 )}
             </AnimatePresence>
 
-            <button className={styles.btn__navbar}>
-                resume <i className="fa-solid fa-download"></i>
-            </button>
+                <button className={styles.btn__navbar}>
+                    resume <i className="fa-solid fa-download"></i>
+                </button>
 
-            <label 
-                className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`} 
-                htmlFor="hamburger-checkbox"
-                onClick={(e) => {
-                    e.preventDefault();
-                    toggleMenu();
-                }}
-            >
-                <input 
-                    type="checkbox" 
-                    id="hamburger-checkbox"
-                    checked={isMenuOpen} 
-                    onChange={toggleMenu} 
-                />
-                <svg viewBox="0 0 32 32">
-                    <path
-                        className={`${styles.line} ${styles['line-top-bottom']}`}
-                        d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
-                    ></path>
-                    <path
-                        className={styles.line}
-                        d="M7 16 27 16"
-                    ></path>
-                </svg>
-            </label>
-        </div>
+                <label 
+                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`} 
+                    htmlFor="hamburger-checkbox"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        toggleMenu();
+                    }}
+                >
+                    <input 
+                        type="checkbox" 
+                        id="hamburger-checkbox"
+                        checked={isMenuOpen} 
+                        onChange={toggleMenu} 
+                    />
+                    <svg viewBox="0 0 32 32">
+                        <path
+                            className={`${styles.line} ${styles['line-top-bottom']}`}
+                            d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+                        ></path>
+                        <path
+                            className={styles.line}
+                            d="M7 16 27 16"
+                        ></path>
+                    </svg>
+                </label>
+            </div>
+        </>
     )
 }
 
