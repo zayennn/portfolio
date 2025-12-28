@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from './hero'
+import Hero from '../Hero/hero'
 import About from '../../components/About/About'
 import Education from '../../components/Education/Education'
 import styles from './Home.module.css'

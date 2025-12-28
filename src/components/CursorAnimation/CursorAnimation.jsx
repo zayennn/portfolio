@@ -89,5 +89,3 @@ const CursorAnimation = () => {
 };
 
 export default CursorAnimation;
-
-

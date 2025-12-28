@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import styles from './navbar.module.css'
 
@@ -36,12 +37,29 @@ const Navbar = () => {
 
     const navLinks = [
         { id: 1, text: 'home', href: '/' },
-        { id: 2, text: 'about', href: '/' },
-        { id: 3, text: 'skills', href: '/' },
-        { id: 4, text: 'educations & experiences', href: '/' },
-        { id: 5, text: 'my projects', href: '/' },
-        { id: 6, text: 'get in touch', href: '/' },
+        { id: 2, text: 'about', href: '#about' },
+        { id: 3, text: 'skills', href: '/skills' },
+        { id: 4, text: 'educations & experiences', href: '#education' },
+        { id: 5, text: 'my projects', href: '/projects' },
+        { id: 6, text: 'get in touch', href: '/contact' },
     ];
+
+    const handleNavClick = (href) => {
+        if (href.startsWith('/')) {
+            setIsMenuOpen(false);
+            return;
+        }
+        
+        if (window.location.pathname === '/') {
+            setIsMenuOpen(false);
+            const element = document.querySelector(href);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            window.location.href = `/${href}`;
+        }
+    };
 
     const menuVariants = {
         closed: {
@@ -93,9 +111,7 @@ const Navbar = () => {
         }
     };
 
-
-
-  return (
+    return (
         <>
             <motion.div
                 className={styles.scroll__progress}
@@ -103,60 +119,100 @@ const Navbar = () => {
             />
 
             <div ref={navbarRef} className={styles.navbar__container}>
-        <a className={styles.brand} href="/">
-            EAZ
-        </a>
+                <Link className={styles.brand} to="/">
+                    EAZ
+                </Link>
 
-            {/* Desktop Menu */}
-        <nav className={styles.nav__menu}>
-                {navLinks.map((link) => (
-                    <a
-                        key={link.id}
-                        className={styles.nav__link}
-                        href={link.href}
-                    >
-                        {link.text}
-                    </a>
-                ))}
-        </nav>
-
-            {/* Mobile Menu */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.nav
-                        className={`${styles.nav__menu} ${styles.nav__menu__mobile}`}
-                        variants={menuVariants}
-                        initial="closed"
-                        animate="open"
-                        exit="closed"
-                    >
-                        {navLinks.map((link, index) => (
-                            <motion.a
+                {/* Desktop Menu */}
+                <nav className={styles.nav__menu}>
+                    {navLinks.map((link) => (
+                        link.href.startsWith('/') ? (
+                            <Link
+                                key={link.id}
+                                className={styles.nav__link}
+                                to={link.href}
+                                data-cursor="hover"
+                            >
+                                {link.text}
+                            </Link>
+                        ) : (
+                            <a
                                 key={link.id}
                                 className={styles.nav__link}
                                 href={link.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                variants={linkVariants}
-                                custom={index}
-                                initial="closed"
-                                animate="open"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    handleNavClick(link.href);
+                                }}
+                                data-cursor="hover"
                             >
                                 {link.text}
-                            </motion.a>
-                        ))}
-                        <motion.button
-                            className={`${styles.btn__navbar} ${styles.hide}`}
-                            variants={buttonVariants}
+                            </a>
+                        )
+                    ))}
+                </nav>
+
+                {/* Mobile Menu */}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.nav
+                            className={`${styles.nav__menu} ${styles.nav__menu__mobile}`}
+                            variants={menuVariants}
                             initial="closed"
                             animate="open"
+                            exit="closed"
                         >
-                            resume <i className="fa-solid fa-download"></i>
-                        </motion.button>
-                    </motion.nav>
-                )}
-            </AnimatePresence>
+                            {navLinks.map((link, index) => (
+                                link.href.startsWith('/') ? (
+                                    <motion.div
+                                        key={link.id}
+                                        variants={linkVariants}
+                                        custom={index}
+                                        initial="closed"
+                                        animate="open"
+                                    >
+                                        <Link
+                                            className={styles.nav__link}
+                                            to={link.href}
+                                            onClick={() => setIsMenuOpen(false)}
+                                            data-cursor="hover"
+                                        >
+                                            {link.text}
+                                        </Link>
+                                    </motion.div>
+                                ) : (
+                                    <motion.a
+                                        key={link.id}
+                                        className={styles.nav__link}
+                                        href={link.href}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handleNavClick(link.href);
+                                        }}
+                                        variants={linkVariants}
+                                        custom={index}
+                                        initial="closed"
+                                        animate="open"
+                                        data-cursor="hover"
+                                    >
+                                        {link.text}
+                                    </motion.a>
+                                )
+                            ))}
+                            <motion.button
+                                className={`${styles.btn__navbar} ${styles.hide}`}
+                                variants={buttonVariants}
+                                initial="closed"
+                                animate="open"
+                                data-cursor="hover"
+                            >
+                                resume <i className="fa-solid fa-download"></i>
+                            </motion.button>
+                        </motion.nav>
+                    )}
+                </AnimatePresence>
 
-                <button className={styles.btn__navbar}>
+                <button className={styles.btn__navbar} data-cursor="hover">
                     resume <i className="fa-solid fa-download"></i>
                 </button>
 
@@ -167,6 +223,7 @@ const Navbar = () => {
                         e.preventDefault();
                         toggleMenu();
                     }}
+                    data-cursor="hover"
                 >
                     <input 
                         type="checkbox" 
@@ -185,9 +242,9 @@ const Navbar = () => {
                         ></path>
                     </svg>
                 </label>
-    </div>
+            </div>
         </>
-  )
+    )
 }
 
 export default Navbar
