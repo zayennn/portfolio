@@ -57,6 +57,7 @@ const Projects = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: index * 0.2 }}
                         whileHover={{ y: -10 }}
+                        data-cursor="hover"
                     >
                         <div className={styles.project__image}>
                             <img src={project.image} alt={project.title} />

@@ -10,3 +10,24 @@ body {
   min-height: 100vh;
   background-color: #ffffff;
 }
+
+a, button, .btn, [data-cursor="hover"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+}
+
+button, 
+a,
+[data-cursor="hover"] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

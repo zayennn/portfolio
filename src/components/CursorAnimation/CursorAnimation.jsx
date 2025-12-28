@@ -1,89 +1,168 @@
 import React, { useEffect, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CursorAnimation = () => {
-  const [cursorPos, setCursorPos] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-
-  const followerX = useSpring(cursorPos.x, {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Motion values untuk spring animation
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  
+  // Spring untuk border (lebih lambat, ada delay)
+  const borderX = useSpring(cursorX, {
     stiffness: 120,
-    damping: 20,
-    mass: 0.4,
+    damping: 25,
+    mass: 0.5,
   });
-
-  const followerY = useSpring(cursorPos.y, {
+  
+  const borderY = useSpring(cursorY, {
     stiffness: 120,
-    damping: 20,
-    mass: 0.4,
+    damping: 25,
+    mass: 0.5,
+  });
+  
+  // Spring untuk cursor dot (lebih cepat)
+  const dotX = useSpring(cursorX, {
+    stiffness: 700,
+    damping: 30,
+    mass: 0.1,
+  });
+  
+  const dotY = useSpring(cursorY, {
+    stiffness: 700,
+    damping: 30,
+    mass: 0.1,
   });
 
   useEffect(() => {
+    // Update motion values ketika cursorPos berubah
+    cursorX.set(cursorPos.x);
+    cursorY.set(cursorPos.y);
+  }, [cursorPos, cursorX, cursorY]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isTouchDevice = 
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        (typeof window.DocumentTouch !== "undefined" && document instanceof window.DocumentTouch);
+      
+      const isSmallScreen = window.innerWidth <= 768;
+      
+      setIsMobile(isTouchDevice || isSmallScreen);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    // Set posisi awal ke tengah layar
+    const initialX = window.innerWidth / 2;
+    const initialY = window.innerHeight / 2;
+    setCursorPos({ x: initialX, y: initialY });
+    cursorX.set(initialX);
+    cursorY.set(initialY);
+
     const handleMove = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
     const handleMouseOver = (e) => {
       const target = e.target.closest("[data-cursor='hover']");
-      if (target) {
+      const isClickable = e.target.closest("a, button, [role='button'], input, textarea");
+      
+      if (target || isClickable) {
         setIsHovering(true);
       }
     };
 
     const handleMouseOut = (e) => {
       const target = e.target.closest("[data-cursor='hover']");
-      if (target) {
+      const isClickable = e.target.closest("a, button, [role='button'], input, textarea");
+      
+      if (target || isClickable) {
         setIsHovering(false);
       }
     };
 
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("mouseover", handleMouseOver);
-    window.addEventListener("mouseout", handleMouseOut);
+    const handleMouseDown = () => {
+      // Efek klik (sedikit mengecil)
+      document.documentElement.style.setProperty('--cursor-scale', '0.9');
+    };
+
+    const handleMouseUp = () => {
+      // Reset efek klik
+      document.documentElement.style.setProperty('--cursor-scale', '1');
+    };
+
+    if (!isMobile) {
+      window.addEventListener("mousemove", handleMove);
+      document.addEventListener("mouseover", handleMouseOver);
+      document.addEventListener("mouseout", handleMouseOut);
+      document.addEventListener("mousedown", handleMouseDown);
+      document.addEventListener("mouseup", handleMouseUp);
+    }
 
     return () => {
       window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseover", handleMouseOver);
-      window.removeEventListener("mouseout", handleMouseOut);
+      document.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseout", handleMouseOut);
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("resize", checkMobile);
     };
-  }, []);
+  }, [isMobile, cursorX, cursorY]);
+
+  if (isMobile) return null;
 
   return (
     <>
+      {/* Main cursor dot (hitam di tengah border) */}
       <motion.div
+        className="cursor-dot"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
-          x: cursorPos.x - 6,
-          y: cursorPos.y - 6,
-          width: isHovering ? 18 : 12,
-          height: isHovering ? 18 : 12,
+          x: dotX,
+          y: dotY,
+          width: isHovering ? 24 : 10,
+          height: isHovering ? 24 : 10,
           borderRadius: "50%",
-          backgroundColor: "#000",
+          backgroundColor: "#000000",
           pointerEvents: "none",
-          zIndex: 2000,
-          mixBlendMode: isHovering ? "difference" : "normal",
-          transition: "width 0.2s ease, height 0.2s ease",
+          zIndex: 9999,
+          mixBlendMode: "difference",
+          transform: "translate(-50%, -50%) scale(var(--cursor-scale, 1))",
+          transition: "width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease",
         }}
       />
 
+      {/* Border cursor dengan delay */}
       <motion.div
+        className="cursor-border"
         style={{
           position: "fixed",
           top: 0,
           left: 0,
-          x: followerX - (isHovering ? 22 : 18),
-          y: followerY - (isHovering ? 22 : 18),
-          width: isHovering ? 44 : 36,
-          height: isHovering ? 44 : 36,
+          x: borderX,
+          y: borderY,
+          width: isHovering ? 60 : 40,
+          height: isHovering ? 60 : 40,
           borderRadius: "50%",
-          border: "2px solid #000",
+          border: "2px solid #000000",
           pointerEvents: "none",
-          zIndex: 1999,
-          mixBlendMode: isHovering ? "difference" : "normal",
-          transition: "width 0.2s ease, height 0.2s ease",
+          zIndex: 9998,
+          mixBlendMode: "normal",
+          transform: "translate(-50%, -50%) scale(var(--cursor-scale, 1))",
+          transition: "width 0.3s ease-out, height 0.3s ease-out, border-color 0.2s ease",
+          borderColor: isHovering ? "#000000" : "#000000",
+          backgroundColor: "transparent",
+          opacity: 0.8,
         }}
       />
+
     </>
   );
 };

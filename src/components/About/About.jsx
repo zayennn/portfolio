@@ -53,7 +53,7 @@ const About = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                    <img src="/images/about.svg" alt="About Illustration" />
+                    <img src={`${process.env.PUBLIC_URL}/images/hero-vector.svg`} alt="About Illustration" />
                 </motion.div>
             </div>
         </motion.div>

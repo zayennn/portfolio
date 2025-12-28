@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  cursor: none !important;
 }
 
 body {
@@ -26,4 +27,150 @@ code {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.cursor-dot {
+  will-change: transform, width, height;
+  backface-visibility: hidden;
+}
+
+.cursor-border {
+  will-change: transform, width, height;
+  backface-visibility: hidden;
+}
+
+a,
+button,
+[data-cursor="hover"],
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  cursor: none !important;
+  position: relative;
+  z-index: 1;
+}
+
+[data-cursor="hover"] {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+[data-cursor="hover"]:hover {
+  transform: translateY(-1px);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+
+  a,
+  button,
+  [data-cursor="hover"],
+  [role="button"] {
+    cursor: pointer !important;
+  }
+
+  .cursor-dot,
+  .cursor-border {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .cursor-dot,
+  .cursor-border {
+    display: none !important;
+  }
+
+  * {
+    cursor: auto !important;
+  }
+}
+
+/* Cursor Animation Variables */
+:root {
+  --cursor-scale: 1;
+}
+
+/* Cursor Animation Styles */
+.cursor-dot {
+  will-change: transform;
+  backface-visibility: hidden;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+}
+
+.cursor-border {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Hide default cursor and use custom cursor */
+* {
+  cursor: none !important;
+}
+
+/* Interactive elements that trigger cursor hover */
+a, 
+button, 
+[data-cursor="hover"], 
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  cursor: none !important;
+}
+
+/* Add subtle transition to hoverable elements */
+[data-cursor="hover"] {
+  position: relative;
+}
+
+/* Example: Text hover effect */
+.text-hover {
+  transition: color 0.2s ease;
+}
+
+/* Hide cursor on mobile/touch devices */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  
+  a, 
+  button, 
+  [data-cursor="hover"], 
+  [role="button"] {
+    cursor: pointer !important;
+  }
+  
+  .cursor-dot,
+  .cursor-border {
+    display: none !important;
+  }
+}
+
+/* For small screens, disable custom cursor */
+@media (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
+  
+  .cursor-dot,
+  .cursor-border {
+    display: none !important;
+  }
+}
+
+/* Improve performance */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Ensure proper stacking context */
+#root {
+  isolation: isolate;
 }

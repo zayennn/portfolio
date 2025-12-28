@@ -52,6 +52,7 @@ const Hero = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.4 }}
+                        data-cursor="hover"
                     >
                         Elang Atha Zahran
                     </motion.h1>
@@ -189,6 +190,7 @@ console.log("Let's build something amazing!");`}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: 1.6 + index * 0.1 }}
+                            data-cursor="hover"
                         >
                             {tech}
                         </motion.span>
