@@ -1,0 +1,10 @@
+.home__container {
+    width: 100%;
+    padding: 0 45px;
+}
+
+.home__container > section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}

@@ -95,7 +95,7 @@ const Navbar = () => {
 
 
 
-    return (
+  return (
         <>
             <motion.div
                 className={styles.scroll__progress}
@@ -103,12 +103,12 @@ const Navbar = () => {
             />
 
             <div ref={navbarRef} className={styles.navbar__container}>
-                <a className={styles.brand} href="/">
-                    EAZ
-                </a>
+        <a className={styles.brand} href="/">
+            EAZ
+        </a>
 
             {/* Desktop Menu */}
-            <nav className={styles.nav__menu}>
+        <nav className={styles.nav__menu}>
                 {navLinks.map((link) => (
                     <a
                         key={link.id}
@@ -118,7 +118,7 @@ const Navbar = () => {
                         {link.text}
                     </a>
                 ))}
-            </nav>
+        </nav>
 
             {/* Mobile Menu */}
             <AnimatePresence>
@@ -185,9 +185,9 @@ const Navbar = () => {
                         ></path>
                     </svg>
                 </label>
-            </div>
+    </div>
         </>
-    )
+  )
 }
 
 export default Navbar
