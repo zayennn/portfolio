@@ -33,7 +33,6 @@ const Navbar = () => {
     }, []);
 
     useEffect(() => {
-        // Scroll to top ketika route berubah
         window.scrollTo(0, 0);
         setIsMenuOpen(false);
     }, [location]);
@@ -43,7 +42,7 @@ const Navbar = () => {
     };
 
     const navLinks = [
-        { id: 1, text: 'about me', href: '/#about' },
+        { id: 1, text: 'about me', href: '/' },
         { id: 2, text: 'skills', href: '/skills' },
         { id: 3, text: 'my projects', href: '/projects' },
         { id: 4, text: 'get in touch', href: '/contact' },
