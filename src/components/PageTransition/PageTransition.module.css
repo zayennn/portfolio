@@ -104,7 +104,6 @@
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .logoContainer {
         width: 80px;

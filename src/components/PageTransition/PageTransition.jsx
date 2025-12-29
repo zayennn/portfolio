@@ -10,12 +10,10 @@ const PageTransition = ({ onLoadingComplete }) => {
     const [loadingDots, setLoadingDots] = useState('');
 
     useEffect(() => {
-        // Reset state setiap kali location berubah
         setIsLoading(true);
         setLoadingText('Loading');
         setLoadingDots('');
         
-        // Animasi loading dots
         const dotsInterval = setInterval(() => {
             setLoadingDots(prev => {
                 if (prev.length >= 3) return '';
@@ -23,18 +21,15 @@ const PageTransition = ({ onLoadingComplete }) => {
             });
         }, 300);
 
-        // Ubah text menjadi "Ready!" setelah 1 detik
         const readyTimer = setTimeout(() => {
             setLoadingText('Ready!');
         }, 1000);
 
-        // Selesaikan loading setelah 1.5 detik
         const completeTimer = setTimeout(() => {
             setIsLoading(false);
             clearInterval(dotsInterval);
             clearTimeout(readyTimer);
             
-            // Panggil callback untuk memberi tahu bahwa loading selesai
             if (onLoadingComplete) {
                 onLoadingComplete();
             }
@@ -114,15 +109,12 @@ const PageTransition = ({ onLoadingComplete }) => {
                     exit="exit"
                     key={location.pathname}
                 >
-                    {/* Overlay hitam dari kiri */}
                     <motion.div 
                         className={styles.overlay}
                         variants={overlayVariants}
                     />
 
-                    {/* Content di atas overlay */}
                     <div className={styles.content}>
-                        {/* Loading logo/icon */}
                         <motion.div 
                             className={styles.logoContainer}
                             variants={logoVariants}
@@ -133,7 +125,6 @@ const PageTransition = ({ onLoadingComplete }) => {
                             </div>
                         </motion.div>
 
-                        {/* Loading text */}
                         <motion.div 
                             className={styles.textContainer}
                             variants={textVariants}
@@ -147,7 +138,6 @@ const PageTransition = ({ onLoadingComplete }) => {
                             </p>
                         </motion.div>
 
-                        {/* Progress bar */}
                         <motion.div 
                             className={styles.progressBar}
                             initial={{ width: '0%' }}
