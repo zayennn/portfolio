@@ -3,17 +3,6 @@ import { motion } from 'framer-motion';
 import { getGitHubData } from '../../services/githubService';
 import styles from './BehindTheCode.module.css';
 
-const GITHUB_USERNAME = 'zayennn';
-
-const CUSTOM_FEATURED_REPOS = [
-    'portfolio',
-    'react-web-python-learning',
-    'face-scanning',
-    'camera-sensor-scrolling',
-    'convert-speedtest',
-    'sales-management-system'
-];
-
 const BehindTheCode = () => {
     const [githubData, setGithubData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -73,27 +62,6 @@ const BehindTheCode = () => {
     const safeLanguages = Array.isArray(languages) ? languages : [];
     const safePopularRepos = Array.isArray(popularRepos) ? popularRepos : [];
     const safeRecentRepos = Array.isArray(recentRepos) ? recentRepos : [];
-
-    // URL grafik kontribusi: pakai data dari backend kalau ada,
-    // kalau tidak ada fallback ke layanan chart publik berdasarkan username
-    const contributionUrl =
-        contributionCalendar ||
-        `https://ghchart.rshah.org/${user?.login || GITHUB_USERNAME}`;
-
-    // Jika API tidak mengirim popularRepos, kita fallback ke daftar custom/pinned
-    const hasApiPopularRepos = safePopularRepos.length > 0;
-    const fallbackFeaturedRepos = CUSTOM_FEATURED_REPOS.map((name) => ({
-        name,
-        html_url: `https://github.com/${user?.login || GITHUB_USERNAME}/${name}`,
-        description: 'Pinned repository',
-        language: null,
-        stargazers_count: 0,
-        forks_count: 0,
-        watchers_count: 0,
-        updated_at: new Date().toISOString(),
-        private: false,
-    }));
-    const featuredReposToShow = hasApiPopularRepos ? safePopularRepos : fallbackFeaturedRepos;
 
     return (
         <div className={styles.behindContainer}>
@@ -197,9 +165,9 @@ const BehindTheCode = () => {
                         <p>My coding activity visualized</p>
                     </div>
                     <div className={styles.contributionWrapper}>
-                        {contributionUrl ? (
+                        {contributionCalendar ? (
                             <img
-                                src={contributionUrl}
+                                src={contributionCalendar}
                                 alt="GitHub Contribution Chart"
                                 className={styles.contributionImage}
                             />
@@ -282,7 +250,7 @@ const BehindTheCode = () => {
                 </div>
 
                 <div className={styles.reposGrid}>
-                    {featuredReposToShow.length > 0 ? featuredReposToShow.slice(0, 6).map((repo, index) => (
+                    {safePopularRepos.length > 0 ? safePopularRepos.slice(0, 6).map((repo, index) => (
                         <a
                             key={index}
                             href={repo.html_url}
@@ -317,35 +285,29 @@ const BehindTheCode = () => {
                                 </div>
                             )}
 
-                            {hasApiPopularRepos && (
-                                <>
-                                    <div className={styles.repoStats}>
-                                        <div className={styles.stat}>
-                                            <i className="fas fa-star"></i>
-                                            <span>{repo.stargazers_count}</span>
-                                        </div>
-                                        <div className={styles.stat}>
-                                            <i className="fas fa-code-fork"></i>
-                                            <span>{repo.forks_count}</span>
-                                        </div>
-                                        <div className={styles.stat}>
-                                            <i className="fas fa-eye"></i>
-                                            <span>{repo.watchers_count}</span>
-                                        </div>
-                                    </div>
+                            <div className={styles.repoStats}>
+                                <div className={styles.stat}>
+                                    <i className="fas fa-star"></i>
+                                    <span>{repo.stargazers_count}</span>
+                                </div>
+                                <div className={styles.stat}>
+                                    <i className="fas fa-code-fork"></i>
+                                    <span>{repo.forks_count}</span>
+                                </div>
+                                <div className={styles.stat}>
+                                    <i className="fas fa-eye"></i>
+                                    <span>{repo.watchers_count}</span>
+                                </div>
+                            </div>
 
-                                    <div className={styles.repoFooter}>
-                                        <span className={styles.updatedText}>
-                                            Updated {formatDate(repo.updated_at)}
-                                        </span>
-                                    </div>
-                                </>
-                            )}
+                            <div className={styles.repoFooter}>
+                                <span className={styles.updatedText}>
+                                    Updated {formatDate(repo.updated_at)}
+                                </span>
+                            </div>
                         </a>
                     )) : (
-                        <div className={styles.noData}>
-                            No repositories available. Add some names to CUSTOM_FEATURED_REPOS to feature specific repos.
-                        </div>
+                        <div className={styles.noData}>No repositories available</div>
                     )}
                 </div>
             </motion.div>
