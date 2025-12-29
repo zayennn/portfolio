@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 const CursorAnimation = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   // Config - Bisa disesuaikan sesuai preferensi
   const config = {
     // Big ball spring config (main config untuk kecepatan)
@@ -31,7 +31,7 @@ const CursorAnimation = () => {
   const cursorY = useMotionValue(0);
   const smallBallX = useMotionValue(0);
   const smallBallY = useMotionValue(0);
-  
+
   // Spring untuk big ball
   const bigBallX = useSpring(cursorX, config.bigBall);
   const bigBallY = useSpring(cursorY, config.bigBall);
@@ -44,12 +44,12 @@ const CursorAnimation = () => {
     // Check if device is mobile/touch
     const checkMobile = () => {
       setIsMobile(
-        window.innerWidth <= 768 || 
-        'ontouchstart' in window || 
+        window.innerWidth <= 768 ||
+        'ontouchstart' in window ||
         navigator.maxTouchPoints > 0
       );
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
@@ -78,7 +78,7 @@ const CursorAnimation = () => {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseover", handleMouseOver);
       window.addEventListener("mouseout", handleMouseOut);
-      
+
       // Set initial position
       const initialX = window.innerWidth / 2;
       const initialY = window.innerHeight / 2;
@@ -101,7 +101,7 @@ const CursorAnimation = () => {
   return (
     <div className="cursor">
       {/* Small ball cursor */}
-      <motion.div 
+      <motion.div
         className="cursor__ball cursor__ball--small"
         style={{
           position: "fixed",
@@ -120,7 +120,7 @@ const CursorAnimation = () => {
       </motion.div>
 
       {/* Big ball cursor */}
-      <motion.div 
+      <motion.div
         className="cursor__ball cursor__ball--big"
         style={{
           position: "fixed",
