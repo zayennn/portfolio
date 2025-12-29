@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import CursorAnimation from "./components/CursorAnimation/CursorAnimation";
 import PageTransition from "./components/PageTransition/PageTransition";
+import Footer from "./components/Footer/Footer"; // Import Footer
 import Home from "./pages/Home/Home";
 import Projects from "./pages/Projects/Projects";
 import Skills from "./pages/Skills/Skills";
@@ -67,6 +68,7 @@ function AppContent() {
             animate="animate"
             exit="exit"
             variants={pageVariants}
+            style={{ minHeight: 'calc(100vh - 80px)' }}
           >
             <Routes location={location}>
               <Route path="/" element={<Home />} />
@@ -79,6 +81,9 @@ function AppContent() {
           </motion.div>
         )}
       </AnimatePresence>
+      
+      {/* Add Footer here */}
+      <Footer />
     </>
   );
 }

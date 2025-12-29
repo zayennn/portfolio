@@ -46,7 +46,7 @@ const Skills = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
-                <h1 className={styles.skills__title}>My <span>Skills</span></h1>
+                <h1 className={styles.skills__title}>What I <span>Use</span></h1>
                 <p className={styles.skills__subtitle}>
                     Here are the technologies and tools I work with to create amazing web applications.
                 </p>
