@@ -6,34 +6,41 @@ const Education = () => {
     const educationData = [
         {
             id: 1,
-            year: '2020 - Present',
-            title: 'Bachelor of Computer Science',
-            institution: 'University Name',
-            description: 'Specialized in Software Engineering and Web Development'
+            year: '2018 - 2021',
+            title: 'SMK Wikrama Bogor',
+            institution: 'As PPLG',
+            description: 'The Software and Game Engineering Department at SMK Wikrama Bogor provides website and application development skills, as well as practical experience in frontend and backend technologies.'
         },
         {
             id: 2,
-            year: '2022',
-            title: 'Fullstack Web Development Bootcamp',
-            institution: 'Coding Bootcamp',
-            description: 'Intensive training in modern web technologies'
+            year: 'August - December 2024',
+            title: 'Global Gengou Gakko',
+            institution: 'Learning Japanese Language',
+            description: 'The intensive Japanese course at Global Gengou Gakko improved my Japanese language skills to N4 level, covering grammar, vocabulary, and speaking and writing skills.'
         }
     ];
 
     const experienceData = [
         {
             id: 1,
-            year: '2023 - Present',
-            title: 'Junior Fullstack Developer',
-            company: 'Tech Company',
-            description: 'Developing and maintaining web applications'
+            year: 'July - December 2023',
+            title: 'Frontend Web Developer Intern',
+            company: 'PT. Kreasi Sawala Nusantara',
+            description: 'As a Frontend Intern at PT Kreasi Sawala Nusantara, I develop and optimize the appearance and user experience of websites using HTML, CSS, and JavaScript.'
         },
         {
             id: 2,
-            year: '2022 - 2023',
-            title: 'Web Developer Intern',
-            company: 'Startup Company',
-            description: 'Assisted in frontend development and UI/UX implementation'
+            year: 'May 2024',
+            title: 'Competence Test',
+            company: 'SMK Wikrama Bogor',
+            description: 'Taking the Competency Test by creating a website using Laravel as an evaluation of the eligibility of graduating from SMK. This process involves designing, developing, and completing projects according to industry standards.'
+        },
+        {
+            id: 3,
+            year: 'March 2024 - Present',
+            title: 'Freelance',
+            company: 'Junior Web Developer',
+            description: 'As a freelance web developer, I work on website development projects with a focus on responsive design and optimal user experience, as well as communicating directly with clients.'
         }
     ];
 
@@ -45,7 +52,7 @@ const Education = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
         >
-            <h2 className={styles.section__title}>
+            <h2 className={styles.section__title} data-cursor="hover">
                 Education & <span>Experience</span>
             </h2>
             
@@ -61,6 +68,7 @@ const Education = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: item.id * 0.1 }}
+                                data-cursor="hover"
                             >
                                 <div className={styles.timeline__dot}></div>
                                 <div className={styles.timeline__content}>
@@ -85,6 +93,7 @@ const Education = () => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: item.id * 0.1 }}
+                                data-cursor="hover"
                             >
                                 <div className={styles.timeline__dot}></div>
                                 <div className={styles.timeline__content}>

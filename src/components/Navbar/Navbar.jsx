@@ -205,14 +205,14 @@ const Navbar = () => {
                                 animate="open"
                                 data-cursor="hover"
                             >
-                                resume <i className="fa-solid fa-download"></i>
+                                Download CV <i className="fa-solid fa-download"></i>
                             </motion.button>
                         </motion.nav>
                     )}
                 </AnimatePresence>
 
                 <button className={styles.btn__navbar} data-cursor="hover">
-                    resume <i className="fa-solid fa-download"></i>
+                    Download CV <i className="fa-solid fa-download"></i>
                 </button>
 
                 <label 
