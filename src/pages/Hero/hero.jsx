@@ -18,10 +18,10 @@ const Hero = () => {
     }, []);
 
     const socialLinks = [
-        { icon: 'fa-brands fa-instagram', link: 'https://instagram.com', color: '#E4405F' },
-        { icon: 'fa-brands fa-tiktok', link: 'https://tiktok.com', color: '#000000' },
-        { icon: 'fa-brands fa-github', link: 'https://github.com', color: '#181717' },
-        { icon: 'fa-brands fa-linkedin', link: 'https://linkedin.com', color: '#0A66C2' }
+        { icon: 'fa-brands fa-instagram', link: 'https://instagram.com/zaayeenn_', color: '#E4405F' },
+        { icon: 'fa-brands fa-tiktok', link: 'https://www.tiktok.com/@zaayeen_', color: '#000000' },
+        { icon: 'fa-brands fa-github', link: 'https://github.com/zayennn', color: '#181717' },
+        { icon: 'fa-brands fa-linkedin', link: 'https://www.linkedin.com/in/elang-atha-zahran-100459220/', color: '#0A66C2' }
     ];
 
     return (
