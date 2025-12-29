@@ -44,7 +44,7 @@ const Navbar = () => {
     const navLinks = [
         { id: 1, text: 'about me', href: '/' },
         { id: 2, text: 'skills', href: '/skills' },
-        { id: 3, text: 'my projects', href: '/projects' },
+        { id: 3, text: "what i've built", href: '/projects' },
         { id: 4, text: "what i'm into", href: '/into' },
         { id: 5, text: 'behind the code', href: '/behind-the-code' },
         { id: 6, text: 'get in touch', href: '/contact' },
@@ -52,7 +52,7 @@ const Navbar = () => {
 
     const handleNavClick = (href) => {
         setIsMenuOpen(false);
-        
+
         if (href.includes('#') && location.pathname === '/') {
             const elementId = href.split('#')[1];
             const element = document.getElementById(elementId);
@@ -217,8 +217,8 @@ const Navbar = () => {
                     Download CV <i className="fa-solid fa-download"></i>
                 </button>
 
-                <label 
-                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`} 
+                <label
+                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`}
                     htmlFor="hamburger-checkbox"
                     onClick={(e) => {
                         e.preventDefault();
@@ -226,11 +226,11 @@ const Navbar = () => {
                     }}
                     data-cursor="hover"
                 >
-                    <input 
-                        type="checkbox" 
+                    <input
+                        type="checkbox"
                         id="hamburger-checkbox"
-                        checked={isMenuOpen} 
-                        onChange={toggleMenu} 
+                        checked={isMenuOpen}
+                        onChange={toggleMenu}
                     />
                     <svg viewBox="0 0 32 32">
                         <path
