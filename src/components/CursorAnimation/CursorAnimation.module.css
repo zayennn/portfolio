@@ -1,0 +1,45 @@
+/* Custom cursor styles */
+@media (min-width: 769px) {
+  html {
+    cursor: none !important;
+  }
+  
+  a, button, input, textarea, select, 
+  [data-cursor="hover"], 
+  [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Hover effect classes */
+.cursor-hover {
+  transition: transform 0.3s ease;
+}
+
+.cursor-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom hover states for specific elements */
+[data-cursor="hover"] {
+  position: relative;
+}
+
+[data-cursor="hover"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+  z-index: -1;
+}
+
+[data-cursor="hover"]:hover::before {
+  width: 120%;
+  height: 120%;
+}

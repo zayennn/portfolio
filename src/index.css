@@ -2,175 +2,98 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  cursor: none !important;
 }
 
 body {
   margin: 0;
   padding: 0;
-  min-height: 200vh;
-  font-family: 'sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  min-height: 100vh;
+  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  cursor: none;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-.cursor-dot {
-  will-change: transform, width, height;
-  backface-visibility: hidden;
-}
-
-.cursor-border {
-  will-change: transform, width, height;
-  backface-visibility: hidden;
-}
-
-a,
-button,
-[data-cursor="hover"],
-[role="button"],
-input[type="submit"],
-input[type="button"] {
-  cursor: none !important;
-  position: relative;
-  z-index: 1;
-}
-
-[data-cursor="hover"] {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-[data-cursor="hover"]:hover {
-  transform: translateY(-1px);
-}
-
-@media (hover: none) and (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
-
-  a,
-  button,
-  [data-cursor="hover"],
-  [role="button"] {
-    cursor: pointer !important;
-  }
-
-  .cursor-dot,
-  .cursor-border {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .cursor-dot,
-  .cursor-border {
-    display: none !important;
-  }
-
-  * {
-    cursor: auto !important;
-  }
-}
-
-/* Cursor Animation Variables */
-:root {
-  --cursor-scale: 1;
-}
-
-/* Cursor Animation Styles */
-.cursor-dot {
-  will-change: transform;
-  backface-visibility: hidden;
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
-}
-
-.cursor-border {
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* Hide default cursor and use custom cursor */
-* {
   cursor: none !important;
 }
 
-/* Interactive elements that trigger cursor hover */
-a, 
-button, 
-[data-cursor="hover"], 
-[role="button"],
-input[type="submit"],
-input[type="button"],
-input[type="text"],
-input[type="email"],
-textarea,
-select {
+/* Cursor styles */
+.cursor {
+  pointer-events: none;
+}
+
+.cursor__ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  mix-blend-mode: difference;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Fix for links and buttons */
+a, button, [data-cursor="hover"] {
   cursor: none !important;
 }
 
-/* Add subtle transition to hoverable elements */
+/* Smooth transitions for hoverable elements */
 [data-cursor="hover"] {
   position: relative;
-}
-
-/* Example: Text hover effect */
-.text-hover {
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 /* Hide cursor on mobile/touch devices */
-@media (hover: none) and (pointer: coarse) {
-  * {
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  body {
     cursor: auto !important;
   }
   
-  a, 
-  button, 
-  [data-cursor="hover"], 
-  [role="button"] {
+  a, button, [data-cursor="hover"] {
     cursor: pointer !important;
   }
   
-  .cursor-dot,
-  .cursor-border {
+  .cursor {
     display: none !important;
   }
 }
 
-/* For small screens, disable custom cursor */
-@media (max-width: 768px) {
-  * {
-    cursor: auto !important;
-  }
-  
-  .cursor-dot,
-  .cursor-border {
-    display: none !important;
-  }
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-/* Improve performance */
-html, body {
-  overflow-x: hidden;
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-/* Ensure proper stacking context */
-#root {
-  isolation: isolate;
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #000;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }

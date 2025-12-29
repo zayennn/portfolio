@@ -1,169 +1,126 @@
 import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 
 const CursorAnimation = () => {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ 
+    x: typeof window !== "undefined" ? window.innerWidth / 2 : 0, 
+    y: typeof window !== "undefined" ? window.innerHeight / 2 : 0 
+  });
   const [isHovering, setIsHovering] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
-  // Motion values untuk spring animation
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  
-  // Spring untuk border (lebih lambat, ada delay)
-  const borderX = useSpring(cursorX, {
-    stiffness: 120,
-    damping: 25,
-    mass: 0.5,
-  });
-  
-  const borderY = useSpring(cursorY, {
-    stiffness: 120,
-    damping: 25,
-    mass: 0.5,
-  });
-  
-  // Spring untuk cursor dot (lebih cepat)
-  const dotX = useSpring(cursorX, {
-    stiffness: 700,
-    damping: 30,
-    mass: 0.1,
-  });
-  
-  const dotY = useSpring(cursorY, {
-    stiffness: 700,
-    damping: 30,
-    mass: 0.1,
-  });
 
   useEffect(() => {
-    // Update motion values ketika cursorPos berubah
-    cursorX.set(cursorPos.x);
-    cursorY.set(cursorPos.y);
-  }, [cursorPos, cursorX, cursorY]);
-
-  useEffect(() => {
+    // Check if device is mobile/touch
     const checkMobile = () => {
-      const isTouchDevice = 
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        (typeof window.DocumentTouch !== "undefined" && document instanceof window.DocumentTouch);
-      
-      const isSmallScreen = window.innerWidth <= 768;
-      
-      setIsMobile(isTouchDevice || isSmallScreen);
+      setIsMobile(
+        window.innerWidth <= 768 || 
+        'ontouchstart' in window || 
+        navigator.maxTouchPoints > 0
+      );
     };
-
+    
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
 
-    // Set posisi awal ke tengah layar
-    const initialX = window.innerWidth / 2;
-    const initialY = window.innerHeight / 2;
-    setCursorPos({ x: initialX, y: initialY });
-    cursorX.set(initialX);
-    cursorY.set(initialY);
-
-    const handleMove = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleMouseOver = (e) => {
       const target = e.target.closest("[data-cursor='hover']");
-      const isClickable = e.target.closest("a, button, [role='button'], input, textarea");
-      
-      if (target || isClickable) {
+      if (target) {
         setIsHovering(true);
       }
     };
 
     const handleMouseOut = (e) => {
       const target = e.target.closest("[data-cursor='hover']");
-      const isClickable = e.target.closest("a, button, [role='button'], input, textarea");
-      
-      if (target || isClickable) {
+      if (target) {
         setIsHovering(false);
       }
     };
 
-    const handleMouseDown = () => {
-      // Efek klik (sedikit mengecil)
-      document.documentElement.style.setProperty('--cursor-scale', '0.9');
-    };
-
-    const handleMouseUp = () => {
-      // Reset efek klik
-      document.documentElement.style.setProperty('--cursor-scale', '1');
-    };
-
+    // Only add mouse events if not mobile
     if (!isMobile) {
-      window.addEventListener("mousemove", handleMove);
-      document.addEventListener("mouseover", handleMouseOver);
-      document.addEventListener("mouseout", handleMouseOut);
-      document.addEventListener("mousedown", handleMouseDown);
-      document.addEventListener("mouseup", handleMouseUp);
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseover", handleMouseOver);
+      window.addEventListener("mouseout", handleMouseOut);
     }
 
     return () => {
-      window.removeEventListener("mousemove", handleMove);
-      document.removeEventListener("mouseover", handleMouseOver);
-      document.removeEventListener("mouseout", handleMouseOut);
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mouseout", handleMouseOut);
+      window.removeEventListener('resize', checkMobile);
     };
-  }, [isMobile, cursorX, cursorY]);
+  }, [isMobile]);
 
+  // Don't render cursor on mobile
   if (isMobile) return null;
 
   return (
-    <>
-      {/* Main cursor dot (hitam di tengah border) */}
-      <motion.div
-        className="cursor-dot"
+    <div className="cursor">
+      {/* Big ball cursor */}
+      <motion.div 
+        className="cursor__ball cursor__ball--big"
+        initial={{ scale: 1 }}
+        animate={{ 
+          x: mousePosition.x - 15,
+          y: mousePosition.y - 15,
+          scale: isHovering ? 4 : 1
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 150,
+          damping: 15,
+          mass: 0.3,
+          scale: {
+            type: "spring",
+            stiffness: 200,
+            damping: 15
+          }
+        }}
         style={{
           position: "fixed",
           top: 0,
           left: 0,
-          x: dotX,
-          y: dotY,
-          width: isHovering ? 24 : 10,
-          height: isHovering ? 24 : 10,
-          borderRadius: "50%",
-          backgroundColor: "#000000",
-          pointerEvents: "none",
-          zIndex: 9999,
           mixBlendMode: "difference",
-          transform: "translate(-50%, -50%) scale(var(--cursor-scale, 1))",
-          transition: "width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease",
+          zIndex: 1000,
+          pointerEvents: "none",
         }}
-      />
+      >
+        <svg height="30" width="30">
+          <circle cx="15" cy="15" r="12" strokeWidth="0" fill="#f7f8fa" />
+        </svg>
+      </motion.div>
 
-      {/* Border cursor dengan delay */}
-      <motion.div
-        className="cursor-border"
+      {/* Small ball cursor */}
+      <motion.div 
+        className="cursor__ball cursor__ball--small"
+        animate={{ 
+          x: mousePosition.x - 5,
+          y: mousePosition.y - 7
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 250,
+          damping: 10,
+          mass: 0.2
+        }}
         style={{
           position: "fixed",
           top: 0,
           left: 0,
-          x: borderX,
-          y: borderY,
-          width: isHovering ? 60 : 40,
-          height: isHovering ? 60 : 40,
-          borderRadius: "50%",
-          border: "2px solid #000000",
+          mixBlendMode: "difference",
+          zIndex: 1001,
           pointerEvents: "none",
-          zIndex: 9998,
-          mixBlendMode: "normal",
-          transform: "translate(-50%, -50%) scale(var(--cursor-scale, 1))",
-          transition: "width 0.3s ease-out, height 0.3s ease-out, border-color 0.2s ease",
-          borderColor: isHovering ? "#000000" : "#000000",
-          backgroundColor: "transparent",
-          opacity: 0.8,
         }}
-      />
-
-    </>
+      >
+        <svg height="10" width="10">
+          <circle cx="5" cy="5" r="4" strokeWidth="0" fill="#f7f8fa" />
+        </svg>
+      </motion.div>
+    </div>
   );
 };
 
