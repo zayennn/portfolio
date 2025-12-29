@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Projects from "./pages/Projects/Projects";
 import Skills from "./pages/Skills/Skills";
 import Into from "./pages/Into/Into";
+import BehindTheCode from "./pages/BehindTheCode/BehindTheCode";
 import Contact from "./pages/Contact/Contact";
 import "./App.css";
 
@@ -18,7 +19,7 @@ function AppContent() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
+
     if (location.pathname !== prevLocation.pathname) {
       setShowPage(false);
       setPrevLocation(location);
@@ -55,9 +56,9 @@ function AppContent() {
     <>
       <CursorAnimation />
       <Navbar />
-      
+
       <PageTransition onLoadingComplete={handleLoadingComplete} />
-      
+
       <AnimatePresence mode="wait">
         {showPage && (
           <motion.div
@@ -73,6 +74,7 @@ function AppContent() {
               <Route path="/skills" element={<Skills />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/into" element={<Into />} />
+              <Route path="/behind-the-code" element={<BehindTheCode />} />
             </Routes>
           </motion.div>
         )}

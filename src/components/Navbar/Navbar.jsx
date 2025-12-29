@@ -46,7 +46,8 @@ const Navbar = () => {
         { id: 2, text: 'skills', href: '/skills' },
         { id: 3, text: 'my projects', href: '/projects' },
         { id: 4, text: "what i'm into", href: '/into' },
-        { id: 5, text: 'get in touch', href: '/contact' },
+        { id: 5, text: 'behind the code', href: '/behind-the-code' },
+        { id: 6, text: 'get in touch', href: '/contact' },
     ];
 
     const handleNavClick = (href) => {
