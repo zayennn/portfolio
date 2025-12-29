@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Typewriter } from 'react-simple-typewriter';
 import styles from "./hero.module.css";
 
 const Hero = () => {
@@ -22,6 +23,21 @@ const Hero = () => {
         { icon: 'fa-brands fa-tiktok', link: 'https://www.tiktok.com/@zaayeen_', color: '#000000' },
         { icon: 'fa-brands fa-github', link: 'https://github.com/zayennn', color: '#181717' },
         { icon: 'fa-brands fa-linkedin', link: 'https://www.linkedin.com/in/elang-atha-zahran-100459220/', color: '#0A66C2' }
+    ];
+
+    const codeLines = [
+        '<span class="keyword">const</span> developer = {',
+        '  name: <span class="string">"Elang Atha Zahran"</span>,',
+        '  role: <span class="string">"Junior Fullstack Developer"</span>,',
+        '  skills: [',
+        '    <span class="string">"React.js"</span>, <span class="string">"Laravel"</span>, <span class="string">"JavaScript"</span>, <span class="string">"PHP"</span>,',
+        '    <span class="string">"Responsive Design"</span>, <span class="string">"Python"</span>, <span class="string">"Flask"</span>, <span class="string">"Django"</span>,',
+        '    <span class="string">"Laravel"</span>, <span class="string">"etc"</span>',
+        '  ],',
+        '  passion: <span class="string">"Creating exceptional digital experiences"</span>',
+        '};',
+        '',
+        '<span class="function">console</span>.<span class="function">log</span>(<span class="string">"Let\'s build something amazing!"</span>);'
     ];
 
     return (
@@ -64,7 +80,15 @@ const Hero = () => {
                         transition={{ duration: 0.8, delay: 0.6 }}
                     >
                         <h3 className={styles.title}>
-                            Junior <span className={styles.highlight}>Fullstack</span> Developer
+                            <Typewriter
+                                words={['Junior Fullstack Developer', 'Web Developer', 'Problem Solver']}
+                                loop={0}
+                                cursor
+                                cursorStyle="|"
+                                typeSpeed={70}
+                                deleteSpeed={50}
+                                delaySpeed={1500}
+                            />
                         </h3>
                         <div className={styles.title__underline}></div>
                     </motion.div>
@@ -147,29 +171,81 @@ const Hero = () => {
                                 </div>
                                 <span className={styles.code__filename}>portfolio.js</span>
                             </div>
-                            <pre className={styles.code__content}>
-                                <code>
-{`const developer = {
-  name: "Elang Atha Zahran",
-  role: "Junior Fullstack Developer",
-  skills: [
-    "React.js", "Laravel", "JavaScript", "PHP",
-    "Responsive Design", "Python", "Flask", "Django", 
-    "Laravel", "etc"
-  ],
-  passion: "Creating exceptional digital experiences"
-};
-
-console.log("Let's build something amazing!");`}
-                                </code>
-                            </pre>
+                            <div className={styles.code__content}>
+                                <pre>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>01</span>
+                                        <code>
+                                            <span className={styles.keyword}>const</span> developer = {'{'}
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>02</span>
+                                        <code>
+                                            &nbsp;&nbsp;name: <span className={styles.string}>"Elang Atha Zahran"</span>,
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>03</span>
+                                        <code>
+                                            &nbsp;&nbsp;role: <span className={styles.string}>"Junior Fullstack Developer"</span>,
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>04</span>
+                                        <code>
+                                            &nbsp;&nbsp;skills: [
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>05</span>
+                                        <code>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.string}>"React.js"</span>, <span className={styles.string}>"Laravel"</span>, <span className={styles.string}>"JavaScript"</span>, <span className={styles.string}>"PHP"</span>,
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>06</span>
+                                        <code>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.string}>"Responsive Design"</span>, <span className={styles.string}>"Python"</span>, <span className={styles.string}>"Flask"</span>, <span className={styles.string}>"Django"</span>,
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>07</span>
+                                        <code>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span className={styles.string}>"Laravel"</span>, <span className={styles.string}>"etc"</span>
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>08</span>
+                                        <code>
+                                            &nbsp;&nbsp;],
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>09</span>
+                                        <code>
+                                            &nbsp;&nbsp;passion: <span className={styles.string}>"Creating exceptional digital experiences"</span>
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>10</span>
+                                        <code>
+                                            {'};'}
+                                        </code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>11</span>
+                                        <code></code>
+                                    </div>
+                                    <div className={styles.code__line}>
+                                        <span className={styles.line__number}>12</span>
+                                        <code>
+                                            <span className={styles.console}>console</span>.<span className={styles.method}>log</span>(<span className={styles.string}>"Let's build something amazing!"</span>);
+                                        </code>
+                                    </div>
+                                </pre>
+                            </div>
                         </div>
-                        
-                        {/* <div className={styles.floating__elements}>
-                            <div className={`${styles.float__element} ${styles.element__1}`}>⚡</div>
-                            <div className={`${styles.float__element} ${styles.element__2}`}>✨</div>
-                            <div className={`${styles.float__element} ${styles.element__3}`}>🚀</div>
-                        </div> */}
                     </div>
                 </motion.div>
             </div>
