@@ -1,0 +1,679 @@
+.behindContainer {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 45px 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Loading & Error States */
+.loadingContainer,
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.errorContainer p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.noData {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    background: #f9f9f9;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+}
+
+.retryButton {
+    padding: 12px 24px;
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retryButton:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.heroSection {
+    margin-bottom: 4rem;
+}
+
+.profileHeader {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    box-shadow: 8px 8px 0 #000;
+}
+
+.profileAvatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    object-fit: cover;
+}
+
+.profileInfo {
+    flex: 1;
+}
+
+.profileName {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.profileName .highlight {
+    color: #000;
+    position: relative;
+}
+
+.profileName .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+    z-index: -1;
+    border-radius: 2px;
+}
+
+.profileBio {
+    font-size: 1.1rem;
+    color: #525252;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: 600px;
+}
+
+.profileMeta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.githubButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #000;
+}
+
+.githubButton:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0 #000;
+}
+
+/* Section Titles */
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #000;
+    position: relative;
+    display: inline-block;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #000;
+    border-radius: 2px;
+}
+
+/* Stats Overview */
+.statsOverview {
+    margin-bottom: 4rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.statItem {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.statItem:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.statNumber {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.statLabel {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Contribution Section */
+.contributionSection {
+    margin-bottom: 4rem;
+}
+
+.contributionCard {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 8px 8px 0 #000;
+}
+
+.cardHeader {
+    margin-bottom: 1.5rem;
+}
+
+.cardHeader h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.cardHeader p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.contributionWrapper {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+}
+
+.contributionImage {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.contributionLegend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.legendDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+/* Languages Section */
+.languagesSection {
+    margin-bottom: 4rem;
+}
+
+.languagesGrid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.languageCard {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.languageCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.languageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.languageName {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+}
+
+.languagePercent {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.progressBar {
+    width: 100%;
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progressFill {
+    height: 100%;
+    background: #000;
+    border-radius: 4px;
+}
+
+.languageStats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.languageCount {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Repositories Section */
+.reposSection {
+    margin-bottom: 4rem;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.viewAllLink {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.viewAllLink:hover {
+    gap: 1rem;
+}
+
+.reposGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.repoCard {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0 #000;
+    display: flex;
+    flex-direction: column;
+}
+
+.repoCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.repoHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.repoIcon {
+    color: #000;
+    font-size: 1.25rem;
+}
+
+.repoName {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    flex: 1;
+}
+
+.repoVisibility {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    background: #f0f0f0;
+    color: #666;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.repoDescription {
+    color: #525252;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.repoLanguage {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.languageDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.repoStats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.repoFooter {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1rem;
+}
+
+.updatedText {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Activity Section */
+.activitySection {
+    margin-bottom: 4rem;
+}
+
+.insightsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.insightCard {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0 #000;
+}
+
+.insightCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.insightIcon {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.insightCard h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.insightCard p {
+    color: #525252;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* CTA Section */
+.ctaSection {
+    margin-bottom: 4rem;
+}
+
+.ctaCard {
+    background: #000;
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    color: #fff;
+}
+
+.ctaCard h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.ctaCard p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.ctaButtons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.primaryButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 14px 28px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+}
+
+.primaryButton:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.secondaryButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 14px 28px;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+}
+
+.secondaryButton:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .behindContainer {
+        padding: 100px 30px 40px;
+    }
+
+    .profileHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profileMeta {
+        justify-content: center;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reposGrid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .behindContainer {
+        padding: 100px 20px 40px;
+    }
+
+    .profileAvatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profileName {
+        font-size: 2rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .statNumber {
+        font-size: 2rem;
+    }
+
+    .reposGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ctaCard {
+        padding: 2rem;
+    }
+
+    .ctaButtons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .insightsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .contributionLegend {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
