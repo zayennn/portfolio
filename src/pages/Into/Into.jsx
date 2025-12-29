@@ -11,7 +11,7 @@ const Into = () => {
             image: "/images/playlist1.jpg",
             link: "https://open.spotify.com/playlist/4v9HS6PjoLBgDrU5L6GexX",
             color: "#1DB954",
-            mood: "Reflective"
+            mood: "💭 Reflective"
         },
         {
             id: 2,
@@ -20,7 +20,7 @@ const Into = () => {
             image: "/images/playlist2.jpg",
             link: "https://open.spotify.com/playlist/5ioXfjHb5peyoN3qJtAvZO",
             color: "#FF6B6B",
-            mood: "Nostalgic"
+            mood: "💔 Nostalgic"
         },
         {
             id: 3,
@@ -29,7 +29,7 @@ const Into = () => {
             image: "/images/playlist3.jpg",
             link: "https://open.spotify.com/playlist/0K5jIqQY4tp0S8zfX9QIGB",
             color: "#4ECDC4",
-            mood: "Regretful"
+            mood: "😔 Regretful"
         },
         {
             id: 4,
@@ -38,7 +38,7 @@ const Into = () => {
             image: "/images/playlist4.jpg",
             link: "https://open.spotify.com/playlist/41cAYIu6YBwvXq9Uq2YQlD",
             color: "#6C5CE7",
-            mood: "Exhausted"
+            mood: "😴 Exhausted"
         }
     ];
 
@@ -63,7 +63,7 @@ const Into = () => {
             description: "Tactical FPS with precise gunplay and abilities",
             image: "/images/valorant.jpg",
             color: "#FD4556",
-            rank: "Silver"
+            rank: "Platinum"
         },
         {
             id: 3,
@@ -74,7 +74,7 @@ const Into = () => {
             description: "Viking adventure in Dark Ages England",
             image: "/images/valhalla.jpg",
             color: "#003366",
-            progress: "0%"
+            progress: "45%"
         },
         {
             id: 4,
@@ -95,10 +95,10 @@ const Into = () => {
             title: "Assassin's Creed Ezio Trilogy",
             genre: "Action / Stealth",
             hours: "150+",
-            description: "We work in the dark, to serve the light.",
+            description: "The perfect assassin's journey through Renaissance Italy",
             image: "/images/ezio-trilogy.jpg",
             color: "#B8860B",
-            favorite: "AC Revelations"
+            favorite: "AC Brotherhood"
         },
         {
             id: 2,
@@ -108,7 +108,7 @@ const Into = () => {
             description: "My go-to competitive shooter with friends",
             image: "/images/valorant-fav.jpg",
             color: "#FD4556",
-            main: "Sage / Chamber / Reyna / Clove"
+            main: "Raze / Jett"
         },
         {
             id: 3,
@@ -157,14 +157,14 @@ const Into = () => {
     return (
         <div className={styles.into__container}>
             {/* Hero Section */}
-            <motion.div
+            <motion.div 
                 className={styles.hero__section}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
                 <h1 className={styles.hero__title}>
-                    What I'm <span className={styles.highlight} data-text="Into">Into</span>
+                    What I'm <span className={styles.highlight}>Into</span>
                 </h1>
                 <p className={styles.hero__subtitle}>
                     Beyond the code, here's what fuels my creativity and keeps me entertained.
@@ -173,7 +173,7 @@ const Into = () => {
             </motion.div>
 
             {/* Currently Playing Games */}
-            <motion.section
+            <motion.section 
                 className={styles.section}
                 variants={containerVariants}
                 initial="hidden"
@@ -190,7 +190,7 @@ const Into = () => {
 
                 <div className={styles.games__grid}>
                     {currentlyPlaying.map((game) => (
-                        <motion.div
+                        <motion.div 
                             key={game.id}
                             className={styles.game__card}
                             variants={itemVariants}
@@ -205,9 +205,9 @@ const Into = () => {
                                     <i className="fas fa-clock"></i> {game.hours}
                                 </div>
                             </div>
-
+                            
                             <div className={styles.game__image}>
-                                <div
+                                <div 
                                     className={styles.image__placeholder}
                                     style={{ backgroundColor: game.color + '20' }}
                                 >
@@ -222,14 +222,14 @@ const Into = () => {
                                     </span>
                                 </div>
                             </div>
-
+                            
                             <div className={styles.game__content}>
                                 <h3 className={styles.game__title}>{game.title}</h3>
                                 <div className={styles.game__platform}>
                                     <i className="fas fa-desktop"></i> {game.platform}
                                 </div>
                                 <p className={styles.game__description}>{game.description}</p>
-
+                                
                                 <div className={styles.game__stats}>
                                     {game.progress && (
                                         <span className={styles.stat}>
@@ -254,7 +254,7 @@ const Into = () => {
             </motion.section>
 
             {/* Favorite Games */}
-            <motion.section
+            <motion.section 
                 className={styles.section}
                 variants={containerVariants}
                 initial="hidden"
@@ -271,7 +271,7 @@ const Into = () => {
 
                 <div className={styles.favorites__grid}>
                     {favoriteGames.map((game) => (
-                        <motion.div
+                        <motion.div 
                             key={game.id}
                             className={styles.favorite__card}
                             variants={itemVariants}
@@ -286,11 +286,11 @@ const Into = () => {
                                     <i className="fas fa-clock"></i> {game.hours}
                                 </span>
                             </div>
-
+                            
                             <div className={styles.favorite__content}>
                                 <h3 className={styles.favorite__title}>{game.title}</h3>
                                 <p className={styles.favorite__description}>{game.description}</p>
-
+                                
                                 <div className={styles.favorite__details}>
                                     {game.favorite && (
                                         <span className={styles.detail}>
@@ -314,7 +314,7 @@ const Into = () => {
                                     )}
                                 </div>
                             </div>
-
+                            
                             <div className={styles.favorite__footer}>
                                 <div className={styles.rating}>
                                     {[...Array(5)].map((_, i) => (
@@ -331,7 +331,7 @@ const Into = () => {
             </motion.section>
 
             {/* Playlists */}
-            <motion.section
+            <motion.section 
                 className={styles.section}
                 variants={containerVariants}
                 initial="hidden"
@@ -348,14 +348,14 @@ const Into = () => {
 
                 <div className={styles.playlists__grid}>
                     {playlists.map((playlist) => (
-                        <motion.div
+                        <motion.div 
                             key={playlist.id}
                             className={styles.playlist__card}
                             variants={itemVariants}
                             whileHover={{ y: -8, scale: 1.02 }}
                             data-cursor="hover"
                         >
-                            <div
+                            <div 
                                 className={styles.playlist__image}
                                 style={{ backgroundColor: playlist.color + '20' }}
                             >
@@ -369,13 +369,13 @@ const Into = () => {
                                     <i className="fas fa-play"></i>
                                 </div>
                             </div>
-
+                            
                             <div className={styles.playlist__content}>
                                 <h3 className={styles.playlist__title}>{playlist.title}</h3>
                                 <p className={styles.playlist__description}>{playlist.description}</p>
-
+                                
                                 <div className={styles.playlist__actions}>
-                                    <a
+                                    <a 
                                         href={playlist.link}
                                         className={styles.spotify__link}
                                         target="_blank"
@@ -383,9 +383,9 @@ const Into = () => {
                                     >
                                         <i className="fab fa-spotify"></i> Open in Spotify
                                     </a>
-                                    {/* <button className={styles.preview__btn}>
+                                    <button className={styles.preview__btn}>
                                         <i className="fas fa-play-circle"></i> Preview
-                                    </button> */}
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>
@@ -394,7 +394,7 @@ const Into = () => {
             </motion.section>
 
             {/* Currently Listening */}
-            <motion.div
+            <motion.div 
                 className={styles.currently__listening}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
