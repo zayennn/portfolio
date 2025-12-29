@@ -96,7 +96,7 @@ const Into = () => {
             genre: "Action / Stealth",
             hours: "150+",
             description: "Nothing is true, everything is permitted. We work in the dark, to serve the light.",
-            image: "/images/games/ezio-trilogy.jpg",
+            image: "/images/games/ezio-trilogy.png",
             color: "#B8860B",
             favorite: "AC Revelations"
         },
@@ -118,7 +118,7 @@ const Into = () => {
             description: "A game I can always return to, no matter how many times",
             image: "/images/games/The Elder Scrolls V Skyrim.png",
             color: "#2F4F4F",
-            playstyle: "Stealth Archer (of course)"
+            playstyle: "Battlemage | Stealth Barbarian"
         },
         {
             id: 4,
@@ -279,13 +279,16 @@ const Into = () => {
                             whileHover={{ y: -5, scale: 1.01 }}
                             data-cursor="hover"
                         >
-                            <div className={styles.favorite__header}>
-                                <span className={styles.favorite__genre} style={{ backgroundColor: game.color }}>
-                                    {game.genre}
-                                </span>
-                                <span className={styles.favorite__hours}>
-                                    <i className="fas fa-clock"></i> {game.hours}
-                                </span>
+                            <div className={styles.favorite__image}>
+                                <img src={game.image} alt={game.title} />
+                                <div className={styles.favorite__header}>
+                                    <span className={styles.favorite__genre} style={{ backgroundColor: game.color }}>
+                                        {game.genre}
+                                    </span>
+                                    <span className={styles.favorite__hours}>
+                                        <i className="fas fa-clock"></i> {game.hours}
+                                    </span>
+                                </div>
                             </div>
                             
                             <div className={styles.favorite__content}>
@@ -305,7 +308,7 @@ const Into = () => {
                                     )}
                                     {game.playstyle && (
                                         <span className={styles.detail}>
-                                            <i className="fas fa-bow-arrow"></i> {game.playstyle}
+                                            <i className="fas fa-fire"></i> {game.playstyle}
                                         </span>
                                     )}
                                     {game.aspect && (
@@ -363,9 +366,10 @@ const Into = () => {
                                 <div className={styles.playlist__mood}>
                                     {playlist.mood}
                                 </div>
-                                <div className={styles.playlist__icon}>
+                                <img src={playlist.image} alt="" />
+                                {/* <div className={styles.playlist__icon}>
                                     <i className="fab fa-spotify"></i>
-                                </div>
+                                </div> */}
                                 <div className={styles.play__button}>
                                     <i className="fas fa-play"></i>
                                 </div>
@@ -384,9 +388,9 @@ const Into = () => {
                                     >
                                         <i className="fab fa-spotify"></i> Open in Spotify
                                     </a>
-                                    <button className={styles.preview__btn}>
+                                    {/* <button className={styles.preview__btn}>
                                         <i className="fas fa-play-circle"></i> Preview
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </motion.div>
