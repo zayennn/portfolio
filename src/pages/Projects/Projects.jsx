@@ -4,88 +4,91 @@ import styles from './Projects.module.css'
 
 const Projects = () => {
     const [activeFilter, setActiveFilter] = useState('all');
-    
+
     const projects = [
         {
             id: 1,
-            title: 'Personal Portfolio Website',
-            description: 'Modern portfolio website built with React, Framer Motion, and custom CSS animations',
+            title: 'Budget Tracker',
+            description: 'Budget Tracker: A powerful web app for managing your finances. Track expenses, categorize spending, set budgets, and generate detailed reports. It offers offline access and a mobile-friendly interface, making it easy to stay on top of your finances.',
             category: 'personal',
             type: 'Web Development',
-            technologies: ['React', 'Framer Motion', 'CSS3', 'JavaScript'],
-            image: '/images/portfolio-project.jpg',
-            github: 'https://github.com/zayennn/my-portfolio',
-            live: '/',
+            technologies: ['PHP', 'Laravel'],
+            image: '/images/projects/budget_tracker.png',
+            github: 'https://github.com/zayennn/budget-tracker',
+            // live: '/',
             featured: true
         },
         {
             id: 2,
-            title: 'E-Commerce Platform',
-            description: 'Full-featured e-commerce solution with cart, checkout, and payment integration',
-            category: 'freelance',
-            type: 'Fullstack Development',
-            technologies: ['Laravel', 'MySQL', 'JavaScript', 'Bootstrap'],
-            image: '/images/ecommerce-project.jpg',
-            github: '#',
-            live: '#',
+            title: 'Certiport',
+            description: 'After completing the HTML and CSS basics test learning, I successfully obtained this certification, which covers the fundamental principles of web development, including the structure and presentation of web content.',
+            category: 'certification',
+            type: 'Certification',
+            technologies: ['HTML5', 'CSS3'],
+            image: '/images/projects/certiport.jpg',
+            issuer: 'Coursera',
+            date: '2023',
+            credential: 'View Credential',
+            credentialLink: '#',
             featured: true
         },
         {
             id: 3,
-            title: 'Task Management App',
-            description: 'Productivity application for managing tasks and projects with team collaboration features',
-            category: 'personal',
-            type: 'Web Application',
-            technologies: ['React', 'Firebase', 'Framer Motion', 'CSS3'],
-            image: '/images/task-app.jpg',
-            github: '#',
-            live: '#',
+            title: 'Learning the Basic Principles of SOLID Programming',
+            description: 'A course on Dicoding that teaches the principles of SOLID programming, which are essential for writing clean and maintainable code.',
+            category: 'certification',
+            type: 'certification',
+            credential: 'View Credential',
+            technologies: [''],
+            image: '/images/projects/dicoding.png',
             featured: false
         },
         {
             id: 4,
-            title: 'Restaurant Management System',
-            description: 'Complete restaurant management system with order tracking, inventory, and reporting',
+            title: 'Created Landing Page for PT. DHP',
+            description: 'Built a landing page for PT. DHP, a local IT services provider, using Laravel and Bootstrap 5, delivering a high-quality product on time based on client needs.',
             category: 'freelance',
-            type: 'Web Application',
-            technologies: ['PHP', 'Laravel', 'MySQL', 'JavaScript'],
-            image: '/images/restaurant-system.jpg',
-            github: '#',
-            live: '#',
+            type: 'Web Development',
+            technologies: ['PHP', 'Laravel', 'Bootstrap'],
+            image: '/images/projects/freelance-1.jpg',
+            // github: '#',
+            // live: '#',
             featured: true
         },
         {
             id: 5,
-            title: 'Weather Dashboard',
-            description: 'Real-time weather application with location-based forecasts and interactive charts',
-            category: 'personal',
-            type: 'Web Application',
-            technologies: ['JavaScript', 'API Integration', 'CSS3', 'Chart.js'],
-            image: '/images/weather-app.jpg',
-            github: '#',
-            live: '#',
+            title: 'Created Landing Page for SMPN Negri 157 Jakarta',
+            description: "A landing page designed for SMPN Negri 157 Jakarta, showcasing the school's programs and facilities.",
+            category: 'freelance',
+            type: 'Web Development',
+            technologies: ['PHP', 'Laravel', 'Bootstrap'],
+            image: '/images/projects/freelance-2.jpg',
+            // github: '#',
+            // live: '#',
             featured: false
         },
         {
             id: 6,
-            title: 'Blog Platform',
-            description: 'Content management system for blogging with user authentication and comment system',
-            category: 'freelance',
-            type: 'Web Development',
-            technologies: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap'],
-            image: '/images/blog-platform.jpg',
-            github: '#',
-            live: '#',
-            featured: false
-        },
-        {
-            id: 7,
-            title: 'React.js Certification',
-            description: 'Advanced React.js concepts including hooks, context API, and performance optimization',
+            title: 'Gmetrix',
+            description: 'Gmetrix is the certification I obtained after passing the HTML5 and CSS3 tests during my high school years.',
             category: 'certification',
             type: 'Certification',
             technologies: ['React', 'JavaScript', 'Redux'],
-            image: '/images/react-cert.jpg',
+            image: '/images/projects/gmtrix.jpg',
+            issuer: 'Coursera',
+            date: '2023',
+            credential: 'View Credential',
+            credentialLink: '#',
+            featured: true
+        },
+        {
+            id: 7,
+            title: 'Intership In PT. Kreasi Sawala Nusantara',
+            description: 'An internship program at PT. Kreasi Sawala Nusantara, where I gained practical experience in web development and collaborated with a team of developers.',
+            category: 'certification',
+            type: 'Certification',
+            technologies: ['Junior FrontEnd'],
+            image: '/images/projects/PKL.jpg',
             issuer: 'Coursera',
             date: '2023',
             credential: 'View Credential',
@@ -94,32 +97,63 @@ const Projects = () => {
         },
         {
             id: 8,
-            title: 'Fullstack Web Development',
-            description: 'Comprehensive fullstack development certification covering frontend and backend technologies',
-            category: 'certification',
-            type: 'Certification',
-            technologies: ['JavaScript', 'Node.js', 'Express', 'MongoDB'],
-            image: '/images/fullstack-cert.jpg',
-            issuer: 'Udemy',
-            date: '2022',
-            credential: 'View Credential',
-            credentialLink: '#',
+            title: 'Python Learning',
+            description: "The React Web Python Learning project is an interactive website using React.js for learning Python basics in a practical and fun way. It's perfect for beginners to quickly learn without any hassle.",
+            category: 'personal',
+            type: 'Web Development',
+            technologies: ['PHP', 'Laravel'],
+            image: '/images/projects/python learning.png',
+            github: 'https://github.com/zayennn/budget-tracker',
+            github: 'https://github.com/zayennn/react-web-python-learning',
+            live: 'https://react-web-python-learning.vercel.app/',
             featured: true
         },
         {
             id: 9,
-            title: 'Laravel Certification',
-            description: 'Professional Laravel development including authentication, APIs, and advanced features',
-            category: 'certification',
-            type: 'Certification',
-            technologies: ['PHP', 'Laravel', 'MySQL', 'REST API'],
-            image: '/images/laravel-cert.jpg',
-            issuer: 'Laravel Certified',
-            date: '2023',
-            credential: 'View Credential',
-            credentialLink: '#',
+            title: 'Vite Portfolio',
+            description: 'A personal portfolio website built with Vite, showcasing my skills, projects, and experience.',
+            category: 'personal',
+            type: 'Web Development',
+            technologies: ["Vite Js"],
+            image: '/images/projects/vite-portfolio.png',
+            github: 'https://github.com/zaayeenn/vite-portfolio',
+            live: 'https://vite-portfolio-drab.vercel.app/',
             featured: false
-        }
+        },
+        {
+            id: 10,
+            title: 'React Js Portfolio',
+            description: 'A personal portfolio website built with React, showcasing my skills, projects, and experience.',
+            category: 'personal',
+            type: 'Web Development',
+            technologies: ["React Js"],
+            image: '/images/projects/react portfolio.png',
+            github: 'https://github.com/zaayeenn/reactjs-portfolio',
+            live: 'https://els-reactjs-portfolio.vercel.app/',
+            featured: false
+        },
+        {
+            id: 11,
+            title: 'Vite Cosmic Portfolio',
+            description: 'This is a web portfolio built with Vite JS, incorporating parallax animations and star ratings.',
+            category: 'personal',
+            type: 'Web Development',
+            technologies: ["Vite Js"],
+            image: '/images/projects/react cosmic.png',
+            github: 'https://github.com/zayennn/vite-cosmic-portfolio',
+            live: 'https://cosmic-portfolio-iota.vercel.app/',
+            featured: false
+        },
+        {
+            id: 12,
+            title: 'Cafe Coffe',
+            description: 'This is a freelance project where I was asked by a friend to create a website for a cafe where customers can order products within the website. It was built using html5, css3, and javascript',
+            category: 'freelance',
+            type: 'Web Development',
+            technologies: ["HTML5", "CSS3", "Javascript"],
+            image: '/images/projects/freelance-3.png',
+            featured: true
+        },
     ];
 
     const filters = [
@@ -129,13 +163,13 @@ const Projects = () => {
         { id: 'certification', label: 'Certifications', count: projects.filter(p => p.category === 'certification').length }
     ];
 
-    const filteredProjects = activeFilter === 'all' 
-        ? projects 
+    const filteredProjects = activeFilter === 'all'
+        ? projects
         : projects.filter(project => project.category === activeFilter);
 
     return (
         <div className={styles.projects__container}>
-            <motion.div 
+            <motion.div
                 className={styles.projects__header}
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -143,13 +177,13 @@ const Projects = () => {
             >
                 <h1 className={styles.projects__title}>What I've <span>Built</span></h1>
                 <p className={styles.projects__subtitle}>
-                    A collection of my personal projects, freelance work, and professional certifications. 
+                    A collection of my personal projects, freelance work, and professional certifications.
                     Each represents a unique challenge and solution.
                 </p>
             </motion.div>
 
             {/* Filter Buttons */}
-            <motion.div 
+            <motion.div
                 className={styles.filter__container}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -173,7 +207,7 @@ const Projects = () => {
             {/* Projects Grid */}
             <div className={styles.projects__grid}>
                 {filteredProjects.map((project, index) => (
-                    <motion.div 
+                    <motion.div
                         key={project.id}
                         className={`${styles.project__card} ${project.featured ? styles.featured : ''}`}
                         initial={{ opacity: 0, y: 50 }}
@@ -192,7 +226,7 @@ const Projects = () => {
 
                         {/* Project Image */}
                         <div className={styles.project__image}>
-                            <div className={styles.image__placeholder}>
+                            {/* <div className={styles.image__placeholder}>
                                 {project.category === 'certification' ? (
                                     <div className={styles.cert__icon}>
                                         <i className="fas fa-award"></i>
@@ -202,7 +236,8 @@ const Projects = () => {
                                         <i className="fas fa-code"></i>
                                     </div>
                                 )}
-                            </div>
+                            </div> */}
+                            <img src={project.image} alt="" />
                         </div>
 
                         {/* Project Content */}
@@ -213,21 +248,21 @@ const Projects = () => {
                                     <span className={styles.project__type}>{project.type}</span>
                                 )}
                             </div>
-                            
+
                             <p className={styles.project__desc}>{project.description}</p>
-                            
+
                             {/* Technologies / Issuer */}
                             <div className={styles.project__meta}>
                                 {project.category === 'certification' ? (
                                     <div className={styles.cert__meta}>
-                                        <div className={styles.meta__item}>
+                                        {/* <div className={styles.meta__item}>
                                             <i className="fas fa-university"></i>
                                             <span>{project.issuer}</span>
                                         </div>
                                         <div className={styles.meta__item}>
                                             <i className="fas fa-calendar-alt"></i>
                                             <span>{project.date}</span>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 ) : (
                                     <div className={styles.project__tech}>
@@ -241,8 +276,8 @@ const Projects = () => {
                             {/* Action Buttons */}
                             <div className={styles.project__actions}>
                                 {project.category === 'certification' ? (
-                                    <a 
-                                        href={project.credentialLink} 
+                                    <a
+                                        href={project.credentialLink}
                                         className={styles.credential__btn}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -254,8 +289,8 @@ const Projects = () => {
                                 ) : (
                                     <>
                                         {project.github && (
-                                            <a 
-                                                href={project.github} 
+                                            <a
+                                                href={project.github}
                                                 className={styles.project__link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -266,8 +301,8 @@ const Projects = () => {
                                             </a>
                                         )}
                                         {project.live && (
-                                            <a 
-                                                href={project.live} 
+                                            <a
+                                                href={project.live}
                                                 className={`${styles.project__link} ${styles.live__link}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -287,7 +322,7 @@ const Projects = () => {
 
             {/* Empty State */}
             {filteredProjects.length === 0 && (
-                <motion.div 
+                <motion.div
                     className={styles.empty__state}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -302,7 +337,7 @@ const Projects = () => {
             )}
 
             {/* CTA Section */}
-            <motion.div 
+            <motion.div
                 className={styles.cta__section}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -312,8 +347,8 @@ const Projects = () => {
                 <div className={styles.cta__content}>
                     <h2>Have a project in mind?</h2>
                     <p>Let's discuss how we can bring your ideas to life</p>
-                    <a 
-                        href="/contact" 
+                    <a
+                        href="/contact"
                         className={styles.cta__button}
                         data-cursor="hover"
                     >
