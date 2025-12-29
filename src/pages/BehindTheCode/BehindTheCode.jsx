@@ -251,7 +251,7 @@ const BehindTheCode = () => {
                                     />
                                 </div>
                                 <div className={styles.languageStats}>
-                                    <span className={styles.languageCount}>{count} repos</span>
+                                    <span className={styles.languageCount}>{count} repositories</span>
                                 </div>
                             </div>
                         );
