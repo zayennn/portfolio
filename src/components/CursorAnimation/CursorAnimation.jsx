@@ -5,43 +5,35 @@ const CursorAnimation = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Config - Bisa disesuaikan sesuai preferensi
   const config = {
-    // Big ball spring config (main config untuk kecepatan)
     bigBall: {
       stiffness: 10000,    // Semakin tinggi = semakin cepat (default: 100)
       damping: 15,       // Semakin rendah = semakin sedikit bounce (default: 20)
       mass: 0.3,         // Semakin rendah = semakin ringan (default: 0.5)
     },
-    // Small ball spring config (supaya instant)
     smallBall: {
       stiffness: 1500,   // Sangat tinggi = instant
       damping: 20,
       mass: 0.02,
     },
-    // Scale animation config
     scale: {
       stiffness: 300,
       damping: 15,
     }
   };
 
-  // Motion values untuk cursor positions
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
   const smallBallX = useMotionValue(0);
   const smallBallY = useMotionValue(0);
 
-  // Spring untuk big ball
   const bigBallX = useSpring(cursorX, config.bigBall);
   const bigBallY = useSpring(cursorY, config.bigBall);
 
-  // Spring untuk small ball
   const smallBallSpringX = useSpring(smallBallX, config.smallBall);
   const smallBallSpringY = useSpring(smallBallY, config.smallBall);
 
   useEffect(() => {
-    // Check if device is mobile/touch
     const checkMobile = () => {
       setIsMobile(
         window.innerWidth <= 768 ||
@@ -79,7 +71,6 @@ const CursorAnimation = () => {
       window.addEventListener("mouseover", handleMouseOver);
       window.addEventListener("mouseout", handleMouseOut);
 
-      // Set initial position
       const initialX = window.innerWidth / 2;
       const initialY = window.innerHeight / 2;
       cursorX.set(initialX - 15);
@@ -100,7 +91,6 @@ const CursorAnimation = () => {
 
   return (
     <div className="cursor">
-      {/* Small ball cursor */}
       <motion.div
         className="cursor__ball cursor__ball--small"
         style={{
@@ -119,7 +109,6 @@ const CursorAnimation = () => {
         </svg>
       </motion.div>
 
-      {/* Big ball cursor */}
       <motion.div
         className="cursor__ball cursor__ball--big"
         style={{
