@@ -16,10 +16,8 @@ function AppContent() {
   const [prevLocation, setPrevLocation] = useState(location);
 
   useEffect(() => {
-    // Reset scroll position
     window.scrollTo(0, 0);
     
-    // Hide current page when location changes
     if (location.pathname !== prevLocation.pathname) {
       setShowPage(false);
       setPrevLocation(location);
@@ -27,7 +25,6 @@ function AppContent() {
   }, [location, prevLocation]);
 
   const handleLoadingComplete = () => {
-    // Show the new page after loading animation completes
     setShowPage(true);
   };
 
@@ -58,10 +55,8 @@ function AppContent() {
       <CursorAnimation />
       <Navbar />
       
-      {/* Page Transition */}
       <PageTransition onLoadingComplete={handleLoadingComplete} />
       
-      {/* Page Content - Only show when not loading */}
       <AnimatePresence mode="wait">
         {showPage && (
           <motion.div
