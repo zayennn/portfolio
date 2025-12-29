@@ -1,13 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CursorAnimation = () => {
-  const [mousePosition, setMousePosition] = useState({ 
-    x: typeof window !== "undefined" ? window.innerWidth / 2 : 0, 
-    y: typeof window !== "undefined" ? window.innerHeight / 2 : 0 
-  });
   const [isHovering, setIsHovering] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Config - Bisa disesuaikan sesuai preferensi
+  const config = {
+    // Big ball spring config (main config untuk kecepatan)
+    bigBall: {
+      stiffness: 10000,    // Semakin tinggi = semakin cepat (default: 100)
+      damping: 15,       // Semakin rendah = semakin sedikit bounce (default: 20)
+      mass: 0.3,         // Semakin rendah = semakin ringan (default: 0.5)
+    },
+    // Small ball spring config (supaya instant)
+    smallBall: {
+      stiffness: 1500,   // Sangat tinggi = instant
+      damping: 20,
+      mass: 0.02,
+    },
+    // Scale animation config
+    scale: {
+      stiffness: 300,
+      damping: 15,
+    }
+  };
+
+  // Motion values untuk cursor positions
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const smallBallX = useMotionValue(0);
+  const smallBallY = useMotionValue(0);
+  
+  // Spring untuk big ball
+  const bigBallX = useSpring(cursorX, config.bigBall);
+  const bigBallY = useSpring(cursorY, config.bigBall);
+
+  // Spring untuk small ball
+  const smallBallSpringX = useSpring(smallBallX, config.smallBall);
+  const smallBallSpringY = useSpring(smallBallY, config.smallBall);
 
   useEffect(() => {
     // Check if device is mobile/touch
@@ -23,7 +54,10 @@ const CursorAnimation = () => {
     window.addEventListener('resize', checkMobile);
 
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      cursorX.set(e.clientX - 15);
+      cursorY.set(e.clientY - 15);
+      smallBallX.set(e.clientX - 5);
+      smallBallY.set(e.clientY - 7);
     };
 
     const handleMouseOver = (e) => {
@@ -40,11 +74,18 @@ const CursorAnimation = () => {
       }
     };
 
-    // Only add mouse events if not mobile
     if (!isMobile) {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseover", handleMouseOver);
       window.addEventListener("mouseout", handleMouseOut);
+      
+      // Set initial position
+      const initialX = window.innerWidth / 2;
+      const initialY = window.innerHeight / 2;
+      cursorX.set(initialX - 15);
+      cursorY.set(initialY - 15);
+      smallBallX.set(initialX - 5);
+      smallBallY.set(initialY - 7);
     }
 
     return () => {
@@ -53,64 +94,21 @@ const CursorAnimation = () => {
       window.removeEventListener("mouseout", handleMouseOut);
       window.removeEventListener('resize', checkMobile);
     };
-  }, [isMobile]);
+  }, [isMobile, cursorX, cursorY, smallBallX, smallBallY]);
 
-  // Don't render cursor on mobile
   if (isMobile) return null;
 
   return (
     <div className="cursor">
-      {/* Big ball cursor */}
-      <motion.div 
-        className="cursor__ball cursor__ball--big"
-        initial={{ scale: 1 }}
-        animate={{ 
-          x: mousePosition.x - 15,
-          y: mousePosition.y - 15,
-          scale: isHovering ? 4 : 1
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 150,
-          damping: 15,
-          mass: 0.3,
-          scale: {
-            type: "spring",
-            stiffness: 200,
-            damping: 15
-          }
-        }}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          mixBlendMode: "difference",
-          zIndex: 1000,
-          pointerEvents: "none",
-        }}
-      >
-        <svg height="30" width="30">
-          <circle cx="15" cy="15" r="12" strokeWidth="0" fill="#f7f8fa" />
-        </svg>
-      </motion.div>
-
       {/* Small ball cursor */}
       <motion.div 
         className="cursor__ball cursor__ball--small"
-        animate={{ 
-          x: mousePosition.x - 5,
-          y: mousePosition.y - 7
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 250,
-          damping: 10,
-          mass: 0.2
-        }}
         style={{
           position: "fixed",
           top: 0,
           left: 0,
+          x: smallBallSpringX,
+          y: smallBallSpringY,
           mixBlendMode: "difference",
           zIndex: 1001,
           pointerEvents: "none",
@@ -118,6 +116,29 @@ const CursorAnimation = () => {
       >
         <svg height="10" width="10">
           <circle cx="5" cy="5" r="4" strokeWidth="0" fill="#f7f8fa" />
+        </svg>
+      </motion.div>
+
+      {/* Big ball cursor */}
+      <motion.div 
+        className="cursor__ball cursor__ball--big"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          x: bigBallX,
+          y: bigBallY,
+          scale: isHovering ? 4 : 1,
+          mixBlendMode: "difference",
+          zIndex: 1000,
+          pointerEvents: "none",
+        }}
+        transition={{
+          scale: config.scale
+        }}
+      >
+        <svg height="30" width="30">
+          <circle cx="15" cy="15" r="12" strokeWidth="0" fill="#f7f8fa" />
         </svg>
       </motion.div>
     </div>

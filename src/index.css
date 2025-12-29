@@ -8,61 +8,37 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  font-family: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none !important;
 }
 
-/* Cursor styles */
-.cursor {
-  pointer-events: none;
-}
-
-.cursor__ball {
-  position: fixed;
-  top: 0;
-  left: 0;
-  mix-blend-mode: difference;
-  z-index: 1000;
-  pointer-events: none;
-}
-
-/* Fix for links and buttons */
-a, button, [data-cursor="hover"] {
-  cursor: none !important;
-}
-
-/* Smooth transitions for hoverable elements */
-[data-cursor="hover"] {
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-/* Hide cursor on mobile/touch devices */
-@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+/* Cursor styles - hanya untuk desktop */
+@media (min-width: 769px) {
   body {
-    cursor: auto !important;
+    cursor: none !important;
   }
   
-  a, button, [data-cursor="hover"] {
-    cursor: pointer !important;
-  }
-  
-  .cursor {
-    display: none !important;
+  a, button, input, textarea, select, 
+  [data-cursor="hover"], 
+  [role="button"] {
+    cursor: none !important;
   }
 }
 
-/* Scrollbar styling */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -74,26 +50,34 @@ a, button, [data-cursor="hover"] {
   background: #333;
 }
 
-/* Selection styling */
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
 ::selection {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.1);
   color: #000;
 }
 
-/* Focus styles for accessibility */
+/* Focus styles */
 :focus-visible {
   outline: 2px solid #000;
   outline-offset: 2px;
 }
 
-/* Ensure images don't overflow */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+/* Optimize cursor performance */
+.cursor__ball {
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+.cursor__ball--small {
+  transition: transform 0s linear !important; /* Remove transition for instant movement */
+}
+
+/* Hardware acceleration */
+.cursor__ball--big {
+  transform: translate3d(0, 0, 0);
 }

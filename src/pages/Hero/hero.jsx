@@ -74,6 +74,7 @@ const Hero = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.8 }}
+                        data-cursor="hover"
                     >
                         Building exceptional digital experiences with modern web technologies. 
                         Specializing in responsive design, clean architecture, and scalable solutions.
@@ -134,6 +135,7 @@ const Hero = () => {
                     style={{
                         transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
                     }}
+                    data-cursor="hover"
                 >
                     <div className={styles.visual__container}>
                         <div className={styles.code__snippet}>
