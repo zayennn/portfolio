@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import styles from './navbar.module.css'
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navbarRef = useRef(null);
+    const location = useLocation();
     const { scrollYProgress } = useScroll();
     const scrollX = useSpring(scrollYProgress, {
         stiffness: 120,
@@ -31,33 +32,32 @@ const Navbar = () => {
         };
     }, []);
 
+    useEffect(() => {
+        // Scroll to top ketika route berubah
+        window.scrollTo(0, 0);
+        setIsMenuOpen(false);
+    }, [location]);
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     const navLinks = [
-        { id: 1, text: 'home', href: '/' },
-        { id: 2, text: 'about', href: '#about' },
-        { id: 3, text: 'skills', href: '/skills' },
-        { id: 4, text: 'educations & experiences', href: '#education' },
-        { id: 5, text: 'my projects', href: '/projects' },
-        { id: 6, text: 'get in touch', href: '/contact' },
+        { id: 1, text: 'about me', href: '/#about' },
+        { id: 2, text: 'skills', href: '/skills' },
+        { id: 3, text: 'my projects', href: '/projects' },
+        { id: 4, text: 'get in touch', href: '/contact' },
     ];
 
     const handleNavClick = (href) => {
-        if (href.startsWith('/')) {
-            setIsMenuOpen(false);
-            return;
-        }
-
-        if (window.location.pathname === '/') {
-            setIsMenuOpen(false);
-            const element = document.querySelector(href);
+        setIsMenuOpen(false);
+        
+        if (href.includes('#') && location.pathname === '/') {
+            const elementId = href.split('#')[1];
+            const element = document.getElementById(elementId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
-        } else {
-            window.location.href = `/${href}`;
         }
     };
 
@@ -119,23 +119,14 @@ const Navbar = () => {
             />
 
             <div ref={navbarRef} className={styles.navbar__container}>
-                <Link className={styles.brand} to="/">
+                <Link className={styles.brand} to="/" data-cursor="hover">
                     EAZ
                 </Link>
 
                 {/* Desktop Menu */}
                 <nav className={styles.nav__menu}>
                     {navLinks.map((link) => (
-                        link.href.startsWith('/') ? (
-                            <Link
-                                key={link.id}
-                                className={styles.nav__link}
-                                to={link.href}
-                                data-cursor="hover"
-                            >
-                                {link.text}
-                            </Link>
-                        ) : (
+                        link.href.includes('#') ? (
                             <a
                                 key={link.id}
                                 className={styles.nav__link}
@@ -148,6 +139,15 @@ const Navbar = () => {
                             >
                                 {link.text}
                             </a>
+                        ) : (
+                            <Link
+                                key={link.id}
+                                className={styles.nav__link}
+                                to={link.href}
+                                data-cursor="hover"
+                            >
+                                {link.text}
+                            </Link>
                         )
                     ))}
                 </nav>
@@ -163,24 +163,7 @@ const Navbar = () => {
                             exit="closed"
                         >
                             {navLinks.map((link, index) => (
-                                link.href.startsWith('/') ? (
-                                    <motion.div
-                                        key={link.id}
-                                        variants={linkVariants}
-                                        custom={index}
-                                        initial="closed"
-                                        animate="open"
-                                    >
-                                        <Link
-                                            className={styles.nav__link}
-                                            to={link.href}
-                                            onClick={() => setIsMenuOpen(false)}
-                                            data-cursor="hover"
-                                        >
-                                            {link.text}
-                                        </Link>
-                                    </motion.div>
-                                ) : (
+                                link.href.includes('#') ? (
                                     <motion.a
                                         key={link.id}
                                         className={styles.nav__link}
@@ -197,6 +180,23 @@ const Navbar = () => {
                                     >
                                         {link.text}
                                     </motion.a>
+                                ) : (
+                                    <motion.div
+                                        key={link.id}
+                                        variants={linkVariants}
+                                        custom={index}
+                                        initial="closed"
+                                        animate="open"
+                                    >
+                                        <Link
+                                            className={styles.nav__link}
+                                            to={link.href}
+                                            onClick={() => setIsMenuOpen(false)}
+                                            data-cursor="hover"
+                                        >
+                                            {link.text}
+                                        </Link>
+                                    </motion.div>
                                 )
                             ))}
                             <motion.button
@@ -216,8 +216,8 @@ const Navbar = () => {
                     resume <i className="fa-solid fa-download"></i>
                 </button>
 
-                <label
-                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`}
+                <label 
+                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`} 
                     htmlFor="hamburger-checkbox"
                     onClick={(e) => {
                         e.preventDefault();
@@ -225,11 +225,11 @@ const Navbar = () => {
                     }}
                     data-cursor="hover"
                 >
-                    <input
-                        type="checkbox"
+                    <input 
+                        type="checkbox" 
                         id="hamburger-checkbox"
-                        checked={isMenuOpen}
-                        onChange={toggleMenu}
+                        checked={isMenuOpen} 
+                        onChange={toggleMenu} 
                     />
                     <svg viewBox="0 0 32 32">
                         <path
