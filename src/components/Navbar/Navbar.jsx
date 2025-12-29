@@ -49,7 +49,7 @@ const Navbar = () => {
             setIsMenuOpen(false);
             return;
         }
-        
+
         if (window.location.pathname === '/') {
             setIsMenuOpen(false);
             const element = document.querySelector(href);
@@ -216,8 +216,8 @@ const Navbar = () => {
                     resume <i className="fa-solid fa-download"></i>
                 </button>
 
-                <label 
-                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`} 
+                <label
+                    className={`${styles.hamburger} ${isMenuOpen ? styles.hamburger__open : ''}`}
                     htmlFor="hamburger-checkbox"
                     onClick={(e) => {
                         e.preventDefault();
@@ -225,11 +225,11 @@ const Navbar = () => {
                     }}
                     data-cursor="hover"
                 >
-                    <input 
-                        type="checkbox" 
+                    <input
+                        type="checkbox"
                         id="hamburger-checkbox"
-                        checked={isMenuOpen} 
-                        onChange={toggleMenu} 
+                        checked={isMenuOpen}
+                        onChange={toggleMenu}
                     />
                     <svg viewBox="0 0 32 32">
                         <path
