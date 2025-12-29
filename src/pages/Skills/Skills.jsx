@@ -7,15 +7,21 @@ const Skills = () => {
         { name: 'HTML5', level: 95, category: 'frontend' },
         { name: 'CSS3', level: 90, category: 'frontend' },
         { name: 'JavaScript', level: 85, category: 'frontend' },
-        { name: 'React.js', level: 80, category: 'frontend' },
-        { name: 'PHP', level: 75, category: 'backend' },
-        { name: 'Laravel', level: 70, category: 'backend' },
+        { name: 'TypeScript', level: 70, category: 'frontend' },
+        { name: 'React.js', level: 75, category: 'frontend' },
+        { name: 'Vite', level: 75, category: 'frontend' },
+        { name: 'Bootstrap', level: 90, category: 'frontend' },
+        { name: 'Tailwind', level: 75, category: 'frontend' },
         { name: 'Node.js', level: 65, category: 'backend' },
-        { name: 'MongoDB', level: 60, category: 'backend' },
+        { name: 'Express', level: 50, category: 'backend' },
+        { name: 'Python', level: 50, category: 'backend' },
+        { name: 'Flask', level: 50, category: 'backend' },
+        { name: 'Django', level: 30, category: 'backend' },
+        { name: 'PHP', level: 70, category: 'backend' },
+        { name: 'Laravel', level: 70, category: 'backend' },
         { name: 'MySQL', level: 75, category: 'database' },
         { name: 'Git', level: 85, category: 'tools' },
-        { name: 'Figma', level: 70, category: 'tools' },
-        { name: 'Bootstrap', level: 90, category: 'frontend' },
+        { name: 'Figma', level: 70, category: 'tools' }
     ];
 
     const categories = [
