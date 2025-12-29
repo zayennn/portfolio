@@ -236,6 +236,8 @@ const BehindTheCode = () => {
                         const totalCount = safeLanguages.reduce((acc, [, c]) => acc + c, 0);
                         const percentage = totalCount > 0 ? Math.round((count / totalCount) * 100) : 0;
 
+                        let text__repo = count === 1 ? "Repository" : "Repositories"
+
                         return (
                             <div key={index} className={styles.languageCard} data-cursor="hover">
                                 <div className={styles.languageHeader}>
@@ -251,7 +253,7 @@ const BehindTheCode = () => {
                                     />
                                 </div>
                                 <div className={styles.languageStats}>
-                                    <span className={styles.languageCount}>{count} repositories</span>
+                                    <span className={styles.languageCount}>{count} {text__repo}</span>
                                 </div>
                             </div>
                         );
