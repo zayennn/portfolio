@@ -151,14 +151,13 @@ const Hero = () => {
                                 <code>
 {`const developer = {
   name: "Elang Atha Zahran",
-  role: "Fullstack Developer",
+  role: "Junior Fullstack Developer",
   skills: [
-    "React.js", "Laravel", 
-    "JavaScript", "PHP",
-    "Responsive Design"
+    "React.js", "Laravel", "JavaScript", "PHP",
+    "Responsive Design", "Python", "Flask", "Django", 
+    "Laravel", "etc"
   ],
-  passion: "Creating exceptional
-  digital experiences"
+  passion: "Creating exceptional digital experiences"
 };
 
 console.log("Let's build something amazing!");`}
@@ -182,9 +181,9 @@ console.log("Let's build something amazing!");`}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.5 }}
             >
-                <div className={styles.tech__label}>Tech Stack</div>
+                <div className={styles.tech__label}>Tech Stack This Portfolio</div>
                 <div className={styles.tech__items}>
-                    {['React', 'Laravel', 'JavaScript', 'PHP', 'CSS3', 'MySQL'].map((tech, index) => (
+                    {['React', 'JavaScript', 'CSS3', 'Framer Motion'].map((tech, index) => (
                         <motion.span 
                             key={index}
                             className={styles.tech__item}
