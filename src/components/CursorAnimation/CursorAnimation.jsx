@@ -9,7 +9,7 @@ const CursorAnimation = () => {
     bigBall: {
       stiffness: 10000,
       damping: 15,
-      mass: 0.3,         // Semakin rendah = semakin ringan (default: 0.5)
+      mass: 0.3,
     },
     smallBall: {
       stiffness: 1500,   // Sangat tinggi = instant
