@@ -31,10 +31,9 @@ const Contact = () => {
     };
 
     const contactInfo = [
-        { icon: 'fas fa-envelope', title: 'Email', value: 'elangathazahran@email.com', link: 'mailto:elangathazahran@email.com' },
+        { icon: 'fas fa-envelope', title: 'Email', value: 'athazahranel@email.com', link: 'mailto:athazahranel@gmail.com' },
         { icon: 'fas fa-phone', title: 'Phone', value: '+62 812 3456 7890', link: 'tel:+6281234567890' },
-        { icon: 'fas fa-map-marker-alt', title: 'Location', value: 'Indonesia', link: '#' },
-        { icon: 'fab fa-linkedin', title: 'LinkedIn', value: 'linkedin.com/in/elangatha', link: '#' }
+        { icon: 'fas fa-map-marker-alt', title: 'Location', value: 'Indonesia, West Java', link: '#' },
     ];
 
     return (
