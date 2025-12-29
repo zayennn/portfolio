@@ -1,0 +1,745 @@
+.into__container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 120px 45px 60px;
+    background-color: #ffffff;
+}
+
+/* Hero Section */
+.hero__section {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.hero__title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.highlight {
+    position: relative;
+    color: transparent;
+    display: inline-block;
+}
+
+.highlight::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #000;
+    -webkit-text-stroke: 1.5px #000;
+    text-stroke: 1.5px #000;
+}
+
+.highlight::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(0, 0, 0, 0.1) 25%, 
+        transparent 50%, 
+        rgba(0, 0, 0, 0.1) 75%, 
+        transparent 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 3s infinite linear;
+    mix-blend-mode: multiply;
+}
+
+/* Atau alternatif border outline effect */
+.highlight-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #000;
+    text-stroke: 1.5px #000;
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-outline::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #000, transparent);
+    opacity: 0.5;
+}
+
+/* Alternatif kedua - transparent dengan border character */
+.highlight-border {
+    color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+.highlight-border::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+    -webkit-text-stroke: 2px #000;
+    text-stroke: 2px #000;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+}
+
+.highlight-border::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, 
+        rgba(0, 0, 0, 0.05) 0%, 
+        rgba(0, 0, 0, 0.1) 25%, 
+        rgba(0, 0, 0, 0.05) 50%, 
+        rgba(0, 0, 0, 0.1) 75%, 
+        rgba(0, 0, 0, 0.05) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 4s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Tambahkan kelas baru untuk efek yang lebih baik */
+.hero__title .highlight {
+    color: rgba(255, 255, 255, 0.149);
+    -webkit-text-stroke: 1.8px #000;
+    text-stroke: 1.8px #000;
+    position: relative;
+    display: inline-block;
+}
+
+.hero__title .highlight::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 10px);
+    height: calc(100% + 5px);
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(0, 0, 0, 0.1) 50%, 
+        transparent 70%);
+    background-size: 200% 100%;
+    animation: shine 3s infinite linear;
+    z-index: -1;
+    border-radius: 2px;
+}
+
+@keyframes shine {
+    0% { background-position: -100% 0; }
+    100% { background-position: 100% 0; }
+}
+
+/* Tambahkan class baru untuk game stats */
+.game__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: #666;
+    background: #f5f5f5;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.stat i {
+    font-size: 0.7rem;
+}
+
+.favorite__details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.detail i {
+    color: #000;
+    width: 16px;
+}
+
+.playlist__mood {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.playlist__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.preview__btn {
+    padding: 10px 20px;
+    background: transparent;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.preview__btn:hover {
+    background: #000;
+    color: white;
+}
+
+/* Player controls update */
+.now__playing {
+    margin-bottom: 10px;
+}
+
+.now__label {
+    font-size: 0.8rem;
+    color: #1DB954;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.song__description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.player__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.control__btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.control__btn:hover {
+    opacity: 1;
+}
+
+.play__btn {
+    width: 50px;
+    height: 50px;
+    background: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.play__btn:hover {
+    background: #1ed760;
+    transform: scale(1.1);
+}
+
+.time__info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+}
+
+/* Responsive updates */
+@media (max-width: 768px) {
+    .hero__title {
+        font-size: 2.5rem;
+    }
+    
+    .hero__title .highlight {
+        -webkit-text-stroke: 1.2px #000;
+        text-stroke: 1.2px #000;
+    }
+    
+    .playlist__actions {
+        flex-direction: column;
+    }
+    
+    .player__controls {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 2rem;
+    }
+    
+    .hero__title .highlight {
+        -webkit-text-stroke: 1px #000;
+        text-stroke: 1px #000;
+    }
+}
+
+/* Section Styles */
+.section {
+    margin-bottom: 100px;
+}
+
+.section__header {
+    margin-bottom: 40px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 20px;
+}
+
+.section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section__title i {
+    font-size: 2rem;
+    color: #000;
+}
+
+.section__description {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+}
+
+/* Games Grid - Currently Playing */
+.games__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.game__card {
+    background: #ffffff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.game__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.game__status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.game__hours {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.game__image {
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.game__icon {
+    font-size: 3rem;
+    color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.game__initial {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+
+.game__content {
+    flex: 1;
+}
+
+.game__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.game__platform {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.game__description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #525252;
+}
+
+/* Favorites Grid */
+.favorites__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.favorite__card {
+    background: #ffffff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.favorite__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.favorite__genre {
+    background: #000;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.favorite__hours {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.favorite__content {
+    margin-bottom: 20px;
+}
+
+.favorite__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.favorite__description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #525252;
+}
+
+.favorite__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.rating {
+    color: #FFD700;
+    font-size: 0.9rem;
+}
+
+.replay {
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Playlists Grid */
+.playlists__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.playlist__card {
+    background: #ffffff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.playlist__image {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.playlist__icon {
+    font-size: 4rem;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.play__button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: #000;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.playlist__card:hover .play__button {
+    opacity: 1;
+}
+
+.playlist__content {
+    padding: 25px;
+}
+
+.playlist__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.playlist__description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #525252;
+    margin-bottom: 20px;
+}
+
+.spotify__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #1DB954;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.spotify__link:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+}
+
+/* Currently Listening */
+.currently__listening {
+    background: #000;
+    color: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 80px;
+    border: 2px solid #000;
+}
+
+.listening__content {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.listening__icon {
+    font-size: 3rem;
+    color: #1DB954;
+}
+
+.listening__text {
+    flex: 1;
+}
+
+.listening__text h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.listening__text p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.music__progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress__bar {
+    width: 70%;
+    height: 100%;
+    background: #1DB954;
+    border-radius: 2px;
+    animation: progress 2s infinite ease-in-out;
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 0%; }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .into__container {
+        padding: 100px 30px 40px;
+    }
+    
+    .hero__title {
+        font-size: 3rem;
+    }
+    
+    .section__title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .into__container {
+        padding: 100px 20px 40px;
+    }
+    
+    .hero__title {
+        font-size: 2.5rem;
+    }
+    
+    .games__grid,
+    .favorites__grid,
+    .playlists__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .listening__content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 2rem;
+    }
+    
+    .section__title {
+        font-size: 1.5rem;
+    }
+}

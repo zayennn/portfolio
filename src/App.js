@@ -7,6 +7,7 @@ import PageTransition from "./components/PageTransition/PageTransition";
 import Home from "./pages/Home/Home";
 import Projects from "./pages/Projects/Projects";
 import Skills from "./pages/Skills/Skills";
+import Into from "./pages/Into/Into";
 import Contact from "./pages/Contact/Contact";
 import "./App.css";
 
@@ -71,6 +72,7 @@ function AppContent() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/skills" element={<Skills />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/into" element={<Into />} />
             </Routes>
           </motion.div>
         )}
