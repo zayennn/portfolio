@@ -8,7 +8,7 @@ const CursorAnimation = () => {
   const config = {
     bigBall: {
       stiffness: 10000,
-      damping: 15,       // Semakin rendah = semakin sedikit bounce (default: 20)
+      damping: 15,
       mass: 0.3,         // Semakin rendah = semakin ringan (default: 0.5)
     },
     smallBall: {
