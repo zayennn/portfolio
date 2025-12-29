@@ -15,7 +15,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cursor styles - hanya untuk desktop */
 @media (min-width: 769px) {
   body {
     cursor: none !important;
@@ -51,34 +50,29 @@ code {
   background: #333;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Selection color */
 ::selection {
   background-color: rgba(0, 0, 0, 0.1);
   color: #000;
 }
 
-/* Focus styles */
 :focus-visible {
   outline: 2px solid #000;
   outline-offset: 2px;
 }
 
-/* Optimize cursor performance */
 .cursor__ball {
   will-change: transform;
   backface-visibility: hidden;
 }
 
 .cursor__ball--small {
-  transition: transform 0s linear !important; /* Remove transition for instant movement */
+  transition: transform 0s linear !important;
 }
 
-/* Hardware acceleration */
 .cursor__ball--big {
   transform: translate3d(0, 0, 0);
 }
