@@ -8,37 +8,37 @@ const Into = () => {
             id: 1,
             title: "baskara.",
             description: "Melancholic tunes for introspective moments",
-            image: "/images/playlist1.jpg",
+            image: "/images/playlist/baskara.png",
             link: "https://open.spotify.com/playlist/4v9HS6PjoLBgDrU5L6GexX",
             color: "#1DB954",
-            mood: "💭 Reflective"
+            mood: "Reflective"
         },
         {
             id: 2,
             title: "hurts to remember",
             description: "Songs that hit different when you're reminiscing",
-            image: "/images/playlist2.jpg",
+            image: "/images/playlist/hurts to remember.png",
             link: "https://open.spotify.com/playlist/5ioXfjHb5peyoN3qJtAvZO",
             color: "#FF6B6B",
-            mood: "💔 Nostalgic"
+            mood: "Nostalgic"
         },
         {
             id: 3,
             title: "wish we never met",
             description: "Melodies for the what-ifs and could-have-beens",
-            image: "/images/playlist3.jpg",
+            image: "/images/playlist/wish we never met.png",
             link: "https://open.spotify.com/playlist/0K5jIqQY4tp0S8zfX9QIGB",
             color: "#4ECDC4",
-            mood: "😔 Regretful"
+            mood: "Regretful"
         },
         {
             id: 4,
             title: "trying, tired, crying, dying",
             description: "For those emotionally exhausting days",
-            image: "/images/playlist4.jpg",
+            image: "/images/playlist/trying, tired, crying, dying.png",
             link: "https://open.spotify.com/playlist/41cAYIu6YBwvXq9Uq2YQlD",
             color: "#6C5CE7",
-            mood: "😴 Exhausted"
+            mood: "Exhausted"
         }
     ];
 
@@ -50,7 +50,7 @@ const Into = () => {
             status: "Story",
             hours: "25",
             description: "Parisian parkour and revolutionary intrigue",
-            image: "/images/ac-unity.jpg",
+            image: "/images/games/ACUnity.png",
             color: "#8B0000",
             progress: "65%"
         },
@@ -61,7 +61,7 @@ const Into = () => {
             status: "Competitive",
             hours: "300+",
             description: "Tactical FPS with precise gunplay and abilities",
-            image: "/images/valorant.jpg",
+            image: "/images/games/valorant.png",
             color: "#FD4556",
             rank: "Platinum"
         },
@@ -72,7 +72,7 @@ const Into = () => {
             status: "Open World",
             hours: "80",
             description: "Viking adventure in Dark Ages England",
-            image: "/images/valhalla.jpg",
+            image: "/images/games/ACValhalla.png",
             color: "#003366",
             progress: "45%"
         },
@@ -83,7 +83,7 @@ const Into = () => {
             status: "Modding",
             hours: "500+",
             description: "Endless adventures in Tamriel with mods",
-            image: "/images/skyrim.jpg",
+            image: "/images/games/The Elder Scrolls V Skyrim.png",
             color: "#2F4F4F",
             mods: "50+ mods installed"
         }
@@ -95,10 +95,10 @@ const Into = () => {
             title: "Assassin's Creed Ezio Trilogy",
             genre: "Action / Stealth",
             hours: "150+",
-            description: "The perfect assassin's journey through Renaissance Italy",
-            image: "/images/ezio-trilogy.jpg",
+            description: "Nothing is true, everything is permitted. We work in the dark, to serve the light.",
+            image: "/images/games/ezio-trilogy.jpg",
             color: "#B8860B",
-            favorite: "AC Brotherhood"
+            favorite: "AC Revelations"
         },
         {
             id: 2,
@@ -106,7 +106,7 @@ const Into = () => {
             genre: "Tactical FPS",
             hours: "400+",
             description: "My go-to competitive shooter with friends",
-            image: "/images/valorant-fav.jpg",
+            image: "/images/games/valorant.png",
             color: "#FD4556",
             main: "Raze / Jett"
         },
@@ -116,7 +116,7 @@ const Into = () => {
             genre: "RPG / Open World",
             hours: "600+",
             description: "A game I can always return to, no matter how many times",
-            image: "/images/skyrim-fav.jpg",
+            image: "/images/games/The Elder Scrolls V Skyrim.png",
             color: "#2F4F4F",
             playstyle: "Stealth Archer (of course)"
         },
@@ -126,7 +126,7 @@ const Into = () => {
             genre: "Action / Adventure",
             hours: "60",
             description: "Visually stunning samurai masterpiece with emotional story",
-            image: "/images/ghost-tsushima.jpg",
+            image: "/images/games/Ghost Of Tsushima.png",
             color: "#DC143C",
             aspect: "Combat & Visuals"
         }
@@ -207,19 +207,20 @@ const Into = () => {
                             </div>
                             
                             <div className={styles.game__image}>
-                                <div 
+                                <div
                                     className={styles.image__placeholder}
-                                    style={{ backgroundColor: game.color + '20' }}
+                                    // style={{ backgroundColor: game.color + '20' }}
                                 >
-                                    <div className={styles.game__icon}>
+                                    <img src={game.image} alt="" />
+                                    {/* <div className={styles.game__icon}>
                                         {game.id === 1 && <i className="fas fa-user-secret"></i>}
                                         {game.id === 2 && <i className="fas fa-crosshairs"></i>}
                                         {game.id === 3 && <i className="fas fa-helmet-battle"></i>}
                                         {game.id === 4 && <i className="fas fa-dragon"></i>}
-                                    </div>
-                                    <span className={styles.game__initial}>
+                                    </div> */}
+                                    {/* <span className={styles.game__initial}>
                                         {game.title.split(':')[0].split(' ').map(word => word[0]).join('')}
-                                    </span>
+                                    </span> */}
                                 </div>
                             </div>
                             
